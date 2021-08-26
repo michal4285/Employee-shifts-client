@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,Component} from 'react';
 import './ScheduleManager.css';
 import { connect } from 'react-redux';
 import API from '../../config/env/local'
+import FullCalendarApp from './Calendar'
 
-
-function ScheduleManager(props) {
-
-    return (
-        <>
-            <h1>hello ScheduleManager</h1>
-        </>
-    );
+export default function FullCalendar() {
+  return (
+    <div className="App">
+      <FullCalendarApp/>
+    </div>
+  );
 }
-
-export default ScheduleManager
