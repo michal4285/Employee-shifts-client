@@ -19,7 +19,7 @@ function Routes(props) {
                 <Route path="/Login" component={Login} />
                 <Route path="/Register" component={Register} />
                 <Route path="/ScheduleManager" component={ScheduleManager} />
-                <Route path="/" component={Login} />
+                {/* <Route path="/" component={Login} /> */}
             </Switch>
         </Router>
     );
