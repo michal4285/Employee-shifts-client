@@ -16,9 +16,10 @@ function Routes(props) {
     return (
         <Router>
             <Switch>
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/scheduleManager" component={ScheduleManager} />
+                <Route path="/Login" component={Login} />
+                <Route path="/Register" component={Register} />
+                <Route path="/ScheduleManager" component={ScheduleManager} />
+                <Route path="/" component={Login} />
             </Switch>
         </Router>
     );
