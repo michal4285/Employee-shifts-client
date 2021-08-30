@@ -74,8 +74,10 @@ function SignUp(props) {
       .then(response => response.text())
       .then(result => {
         console.log(result)
-        if (result.employeeId)
-          props.dispatch(setemployee(result))
+        debugger;
+        if (result.Data==null)
+        alert("הכתובת מייל קיימת במערכת")
+        else props.dispatch(setemployee(result))
       })
       .catch(error => console.log('error', error));
   }

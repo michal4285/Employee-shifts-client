@@ -2,7 +2,9 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-
+import 'bootstrap/dist/css/bootstrap.css';
+import { Calendar } from '@fullcalendar/core';
+import bootstrapPlugin from '@fullcalendar/bootstrap';
 export default function FullCalendarApp() {
 
   const events = [
@@ -45,10 +47,12 @@ export default function FullCalendarApp() {
       <div className="App">
         <FullCalendar
       headerToolbar={{
-        center: 'dayGridWeek,timeGridDay',
+        center:'dayGridWeek,timeGridDay',
       }}
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView="dayGridWeek"
+      themeSystem='bootstrap'   
+      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+      theme= 'bootstrap3'    
+      initialView="dayGridWeek"
           events={events}
           nowIndicator
           eventClick={(e) => console.log(e.event.id)}

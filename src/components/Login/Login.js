@@ -54,6 +54,7 @@ function SignIn(props) {
           let employee = data.Data
           props.dispatch(setemployee(employee))
         }
+        else alert("משתמש לא קיים במערכת")
       }
       ).catch(err => console.log(err.message))
   }
