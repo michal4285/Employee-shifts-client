@@ -9,6 +9,7 @@ import {
 import Login from '../components/Login/Login'
 import Register from '../components/Register/Register';
 import ScheduleManager from '../components/ScheduleManager/ScheduleManager';
+import Details from '../components/Details/Details';
 
 function Routes(props) {
     useEffect(() => { }, [])
@@ -19,6 +20,7 @@ function Routes(props) {
                 <Route path="/Login" component={Login} />
                 <Route path="/Register" component={Register} />
                 <Route path="/ScheduleManager" component={ScheduleManager} />
+                <Route path="/Details" component={Details} />
                 {/* <Route path="/" component={Login} /> */}
             </Switch>
         </Router>
