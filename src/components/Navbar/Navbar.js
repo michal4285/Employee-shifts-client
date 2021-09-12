@@ -19,10 +19,11 @@ export default function CenteredTabs() {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        console.log('history:::', history)
     };
 
     return (
-        <Paper className={classes.root}>
+        <Paper className={classes.root} style={{ direction: 'rtl' }}>
             <Tabs
                 value={value}
                 onChange={handleChange}
@@ -30,13 +31,13 @@ export default function CenteredTabs() {
                 textColor="primary"
                 centered
             >
-                <Tab label="הגדרות מערכת" onClick={() => window.location.replace('http://localhost:3000/Setting')} />
-                <Tab label="הודעות" onClick={() => window.location.replace('http://localhost:3000/BoxChat')} />
-                <Tab label="עובד חדש" onClick={() => window.location.replace('http://localhost:3000/Register')} />
-                <Tab label="רשימת עובדים" onClick={() => window.location.replace('http://localhost:3000/Employee')} />
-                <Tab label="לוח עובדים" onClick={() => window.location.replace('http://localhost:3000/SchedualManagar')} />
-                <Tab label="פרטים אישיים" onClick={() => window.location.replace('http://localhost:3000/Details')} />
                 <Tab label="יציאה" onClick={() => history.push('/Login')} />
+                <Tab label="פרטים אישיים" onClick={() => window.location.replace('http://localhost:3000/Details')} />
+                <Tab label="לוח עובדים" onClick={() => window.location.replace('http://localhost:3000/SchedualManagar')} />
+                <Tab label="רשימת עובדים" onClick={() => window.location.replace('http://localhost:3000/Employee')} />
+                <Tab label="עובד חדש" onClick={() => window.location.replace('http://localhost:3000/Register')} />
+                <Tab label="הודעות" onClick={() => window.location.replace('http://localhost:3000/BoxChat')} />
+                <Tab label="הגדרות מערכת" onClick={() => window.location.replace('http://localhost:3000/Setting')} />
             </Tabs>
         </Paper>
     );

@@ -1,14 +1,14 @@
 import produce from 'immer';
 const initialState = {
-  firstname: '',
-  lastName: '',
-  password: '',
-  email:'',
-  phone:'',
-  address:''
+    firstname: 'Michal',
+    lastName: '',
+    password: '',
+    email: '',
+    phone: '',
+    address: ''
+  
 }
 export default produce((state, action) => {
-  debugger;
   switch (action.type) {
     case 'SET_EMPLOYEE_FIRST_NAME':
       state.firstname = action.payload
@@ -19,16 +19,16 @@ export default produce((state, action) => {
     case 'SET_EMPLOYEE_PASSWORD':
       state.password = action.payload
       break;
-      case 'SET_EMPLOYEE_PHONE':
+    case 'SET_EMPLOYEE_PHONE':
       state.phone = action.payload
       break;
-      case 'SET_EMPLOYEE_ADDRESS':
+    case 'SET_EMPLOYEE_ADDRESS':
       state.address = action.payload
       break;
-      case 'SET_EMPLOYEE_EMAIL':
+    case 'SET_EMPLOYEE_EMAIL':
       state.email = action.payload
       break;
-      case 'SET_EMPLOYEE':
+    case 'SET_EMPLOYEE':
       state.email = action.payload.employeeEmail
       state.password = action.payload.employeePassword
       state.firstname = action.payload.employeeFirstName
