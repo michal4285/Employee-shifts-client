@@ -35,7 +35,7 @@ function Details(props) {
     const [confirmPassword, setConfirmPassword] = useState()
 
     useEffect(() => {
-        // alert(employee.firstname)
+        // alert(firstName)
     }, [])
 
     return (
@@ -46,7 +46,7 @@ function Details(props) {
                 <div className="ml-5">עריכת פרטים אישיים</div>
                 <TextField onChange={(e) => setFirstName(e.target.value)} defaultValue={employee.firstname} id="outlined-basic" label="שם פרטי" variant="outlined" className='textField ml-5' />
                 <br />
-                <TextField  value={employee.lastName} id="outlined-basic" label="שם משפחה" variant="outlined" className='textField ml-5' />
+                <TextField onChange={(e) => setLastName(e.target.value)}  defaultValue={employee.lastName} id="outlined-basic" label="שם משפחה" variant="outlined" className='textField ml-5' />
                 <br />
                 <TextField defaultValue={employee.address} id="outlined-basic" label="כתובת" variant="outlined" className='textField ml-5' />
                 <br />
