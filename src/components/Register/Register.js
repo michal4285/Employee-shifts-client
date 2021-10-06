@@ -39,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp(props) {
   const classes = useStyles({});
-  const [password, setpassward] = useState()
+  const [password, setpassward] = useState(" ")
   const [email, setemail] = useState()
-  const [address, setAddress] = useState()
-  const [phone, setPhone] = useState()
+  const [address, setAddress] = useState(" ")
+  const [phone, setPhone] = useState(" ")
   const [firstName, setFirstName] = useState()
   const [lastName, setLastName] = useState()
   const [emailMessage, setemailMessage] = useState()

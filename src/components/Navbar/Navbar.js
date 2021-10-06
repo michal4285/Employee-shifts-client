@@ -31,10 +31,11 @@ export default function CenteredTabs() {
                 textColor="primary"
                 centered
             >
-                <Tab label="יציאה" onClick={() => history.push('/Login')} />
+                {/* <Tab label="יציאה" onClick={() => history.push('/Login')} /> */}
+                <Tab label="יציאה" onClick={() => window.location.replace('http://localhost:3000/Login')} />
                 <Tab label="פרטים אישיים" onClick={() => window.location.replace('http://localhost:3000/Details')} />
-                <Tab label="לוח עובדים" onClick={() => window.location.replace('http://localhost:3000/SchedualManagar')} />
-                <Tab label="רשימת עובדים" onClick={() => window.location.replace('http://localhost:3000/Employee')} />
+                <Tab label="לוח עובדים" onClick={() => window.location.replace('http://localhost:3000/ScheduleManager')} />
+                <Tab label="רשימת עובדים" onClick={() => window.location.replace('http://localhost:3000/EmployeesList')} />
                 <Tab label="עובד חדש" onClick={() => window.location.replace('http://localhost:3000/Register')} />
                 <Tab label="הודעות" onClick={() => window.location.replace('http://localhost:3000/BoxChat')} />
                 <Tab label="הגדרות מערכת" onClick={() => window.location.replace('http://localhost:3000/Setting')} />

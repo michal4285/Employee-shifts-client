@@ -1,11 +1,11 @@
 import produce from 'immer';
 const initialState = {
     firstname: 'Michal',
-    lastName: '',
-    password: '',
-    email: '',
-    phone: '',
-    address: ''
+    lastName: 'Prober',
+    password: '0533114285',
+    email: 'michalprober@gmail.com',
+    phone: '0533114285',
+    address: 'chazon hish 60'
   
 }
 export default produce((state, action) => {
