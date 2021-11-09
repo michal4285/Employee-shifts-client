@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import API from '../../config/env/local'
 
 export default function AlignItemsList() {
+  const [lists, setlists] = useState([,])
+
   useEffect(() => {
     fetch(`${API.LOGIN_URL}employee/GetAll`, {
       method: 'GET',
@@ -16,7 +18,7 @@ export default function AlignItemsList() {
     })
       .then(res => res.json()).then(data => {
         if (data.Data != null) {
-          console.log(data.Data)
+          setlists(data.Data)
         }
         else alert("אין עובדים במערכת")
       }
@@ -24,13 +26,13 @@ export default function AlignItemsList() {
   })
   return (
     <List sx={{ marginTop:'100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-
-      <ListItem alignItems="flex-start">
+    {lists.map((item,index)=>(<div>
+      <ListItem alignItems="flex-start" key={index}>
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary="Richal Prober"
+          primary={`${item.employeeFirstName} ${item.employeeLastName}`}
           secondary={
             <React.Fragment>
               <Typography
@@ -39,13 +41,13 @@ export default function AlignItemsList() {
                 variant="body2"
                 color="text.primary"
               >
-               michalprober@gmail.com
+               {item.employeeEmail}
               </Typography>
             </React.Fragment>
           }
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider variant="inset" component="li" /></div>))}
     </List>
   );
 }
