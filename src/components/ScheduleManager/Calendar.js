@@ -5,6 +5,22 @@ import interactionPlugin from '@fullcalendar/interaction';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Calendar } from '@fullcalendar/core';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
+import React from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
+// export default () => (
+//   <Popup trigger={<button> Trigger</button>} position="right center">
+//     <div>Popup content here !!</div>
+//   </Popup>
+// );
+// function poup(person){
+//   return(
+//     <Popup trigger={<button> Trigger</button>} position="right center">
+//     <div>Popup content here !!</div>
+//   </Popup>);
+//   }
+
 export default function FullCalendarApp() {
 
   const events = [
@@ -162,8 +178,9 @@ export default function FullCalendarApp() {
       initialView="dayGridWeek"
           events={events}
           nowIndicator
-          eventClick={(e) => console.log(e.event.id)}
+          // eventClick={(e) =>poup(e)}
         />
       </div>
     );
   }
+

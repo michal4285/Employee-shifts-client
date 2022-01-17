@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
 import { setemployee, setemployeefirstname, setemployeelastname, setemployeepassword, setemployeeemail } from '../../redux/actions/user'
+import {setexit} from '../../redux/actions/settings'
+
 import './Login.css';
 import API from '../../config/env/local'
 
@@ -53,6 +55,7 @@ function SignIn(props) {
         if (data.Data != null) {
           let employee = data.Data
           props.dispatch(setemployee(employee))
+          props.dispatch(setexit(false))
         }
         else alert("משתמש לא קיים במערכת")
       }

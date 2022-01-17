@@ -18,13 +18,15 @@ const useStyles = makeStyles((theme) => ({
 
 function mapStateToProps(state) {
     return {
-        employee: state.user
+        employee: state.user,
+        
     };
 }
 
 
 function Details(props) {
-    const { employee } = props
+    const {employee} = props
+    debugger;
     const classes = useStyles()
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
