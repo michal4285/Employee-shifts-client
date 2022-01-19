@@ -26,8 +26,8 @@ export default function AlignItemsList() {
   })
   return (
     <List sx={{ marginTop:'100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-    {lists.map((item,index)=>(<div>
-      <ListItem alignItems="flex-start" key={index}>
+    {lists.map((item,index)=>(<div key={index}>
+      <ListItem alignItems="flex-start" >
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>

@@ -6,11 +6,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store'
 import NavBar from './components/Navbar/Navbar'
+import { BrowserRouter } from 'react-router-dom';
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
+    <BrowserRouter> 
  <NavBar/>
-    <App />
+    <App /></BrowserRouter>
   </Provider>,
   // </React.StrictMode>,
   document.getElementById('root')

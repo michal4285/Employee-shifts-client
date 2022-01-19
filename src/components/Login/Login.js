@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
 import { setemployee, setemployeefirstname, setemployeelastname, setemployeepassword, setemployeeemail } from '../../redux/actions/user'
 import {setexit} from '../../redux/actions/settings'
-
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import API from '../../config/env/local'
 
@@ -43,6 +43,7 @@ function SignIn(props) {
   const classes = useStyles();
   const [password, setpassward] = useState()
   const [email, setemail] = useState()
+  const navigate=useNavigate()
 
   const Signin = () => {
     fetch(`${API.LOGIN_URL}employee/Login?email=${email}&password=${password}`, {
@@ -56,6 +57,7 @@ function SignIn(props) {
           let employee = data.Data
           props.dispatch(setemployee(employee))
           props.dispatch(setexit(false))
+          navigate('/ScheduleManager')
         }
         else alert("משתמש לא קיים במערכת")
       }
