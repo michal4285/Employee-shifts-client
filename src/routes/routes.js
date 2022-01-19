@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route,
     Link
 } from "react-router-dom";
@@ -12,20 +12,20 @@ import ScheduleManager from '../components/ScheduleManager/ScheduleManager';
 import Details from '../components/Details/Details';
 import EmployeeList from '../components/EmployeeList/EmployeeList';
 
-function Routes(props) {
+function Routess(props) {
     useEffect(() => { }, [])
 
     return (
         <Router>
-            <Switch>
-                <Route path="/EmployeesList" component={EmployeeList} />
-                <Route path="/Login" component={Login} />
-                <Route path="/Register" component={Register} />
-                <Route path="/ScheduleManager" component={ScheduleManager} />
-                <Route path="/Details" component={Details} />
-                <Route path="/" component={Login} />
-            </Switch>
+            <Routes>
+                <Route path="/EmployeesList" element={<EmployeeList/>} />
+                <Route path="/Login" element={<Login/>} />
+                <Route path="/Register" element={<Register/>} />
+                <Route path="/ScheduleManager" element={<ScheduleManager/>} />
+                <Route path="/Details" element={<Details/>} />
+                <Route path="/" element={<Login/>} />
+            </Routes>
         </Router>
     );
 }
-export default Routes;
+export default Routess;
