@@ -106,7 +106,7 @@ function Details(props) {
             <form className={classes.root} noValidate autoComplete="off" >
                 {/* <TextField id="standard-basic" label="Standard" /> */}
                 {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
-                <div className="ml-5">עריכת פרטים אישיים</div>
+                <div className="ml-20" style={{marginLeft:"35%",color:"blue",fontSize:"200%", fontFamily:"Cursive"}}>עריכת פרטים אישיים</div>
 
                 <TextField onChange={(e) => setFirstName(e.target.value)} defaultValue={employee.firstname} id="outlined-basic" label="שם פרטי" variant="outlined" className='textField ml-5' />
                 <br />

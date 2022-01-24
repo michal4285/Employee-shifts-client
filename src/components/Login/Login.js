@@ -111,16 +111,7 @@ function SignIn(props) {
             onClick={() => Signin()}
           >
             Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-            </Grid>
-          </Grid>
+          </Button>         
         </form>
       </div>
 

@@ -28,9 +28,9 @@ export default function AlignItemsList() {
   return (
 
 
-    <List sx={{ marginTop: '100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List sx={{margin:"35%", marginTop: '100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {lists.map((item, index) => (<div key={index}>
-        <ListItem alignItems="flex-start" >
+        <ListItem alignItems="flex-start" style={{width:"100%",heght:"100%"}}>
           <ListItemAvatar>
             <Avatar alt="Remy Sharp">{item.employeeFirstName.charAt(0).toUpperCase()}</Avatar>
           </ListItemAvatar>
@@ -50,7 +50,7 @@ export default function AlignItemsList() {
             }
           />
         </ListItem>
-        <Divider variant="inset" component="li" /></div>))}
+        <Divider variant="inset" component="li"/></div>))}
     </List>
   );
 }
