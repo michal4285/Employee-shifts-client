@@ -28,29 +28,29 @@ export default function AlignItemsList() {
   return (
 
 
-    <List sx={{ marginTop:'100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
-    {lists.map((item,index)=>(<div>
-      <ListItem alignItems='flex-start' key={index}>
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp">{item.employeeFirstName.charAt(0).toUpperCase()}</Avatar>
-        </ListItemAvatar>
-        <ListItemText sx={{textAlign:"center"}}
-          primary={`${item.employeeFirstName} ${item.employeeLastName}`}
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-               {item.employeeEmail}
-              </Typography>
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" /></div>))}
+    <List sx={{ marginTop: '100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      {lists.map((item, index) => (<div key={index}>
+        <ListItem alignItems="flex-start" >
+          <ListItemAvatar>
+            <Avatar alt="Remy Sharp">{item.employeeFirstName.charAt(0).toUpperCase()}</Avatar>
+          </ListItemAvatar>
+          <ListItemText sx={{ textAlign: "center" }}
+            primary={`${item.employeeFirstName} ${item.employeeLastName}`}
+            secondary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {item.employeeEmail}
+                </Typography>
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+        <Divider variant="inset" component="li" /></div>))}
     </List>
   );
 }
