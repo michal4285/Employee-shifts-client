@@ -17,39 +17,28 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import API from '../../config/env/local'
-// export default () => (
-//   <Popup trigger={<button> Trigger</button>} position="right center">
-//     <div>Popup content here !!</div>
-//   </Popup>
-// );
-// function poup(person){
-//   return(
-//     <Popup trigger={<button> Trigger</button>} position="right center">
-//     <div>Popup content here !!</div>
-//   </Popup>);
-//   }
-
+ 
 export default function FullCalendarApp() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const [clickUser,setclickUser]=useState({employeeFirstName:"michal",employeeLastName:"prober",employeeAddress:"chazon hish",employeePhone:"0533114285",employeeEmail:"michalprober@gmail.com"})
+    const [clickUser,setclickUser]=useState({employeeFirstName:"michal",employeeLastName:"prober",employeeAddress:"chazon hish",employeePhone:"0533114285",employeeEmail:"michalprober@gmail.com",start_shit:10,end_shift:6})
 
     const handleClickOpenEmployee = (id) => {
-      // fetch(`${API.LOGIN_URL}api/Employee/${id}`, {
-      //   method: 'GET',
-      //   // body: JSON.stringify({})
-      // })
-      //   .then(res => res.json()).then(data => {
-      //     debugger;
-      //     console.log(data)
-      //     if (data.Data != null) {
-      //       let employee = data.Data
-      //       setclickUser(employee)
-      //     }
-      //     else alert("שגיאת מערכת")
-      //   }
-      //   ).catch(err => console.log(err.message))
+      fetch(`${API.LOGIN_URL}api/Employee/${id}`, {
+        method: 'GET',
+        // body: JSON.stringify({})
+      })
+        .then(res => res.json()).then(data => {
+          debugger;
+          console.log(data)
+          if (data.Data != null) {
+            let employee = data.Data
+            setclickUser(employee)
+          }
+          else alert("שגיאת מערכת")
+        }
+        ).catch(err => console.log(err.message))
       setOpen(true);
     };
   
@@ -211,7 +200,7 @@ export default function FullCalendarApp() {
       initialView="dayGridWeek"
           events={events}
           nowIndicator
-           eventClick={handleClickOpenEmployee()}
+          eventClick={(e)=>handleClickOpenEmployee(e.start,e.end)}
            variant="outlined"  
         />
 
@@ -231,6 +220,8 @@ export default function FullCalendarApp() {
               {clickUser.employeeEmail}
               <br/>
               {clickUser.employeeAddress}
+              <br/>
+        shift:{clickUser.start_shit}-{clickUser.end_shift}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
