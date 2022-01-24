@@ -5,10 +5,18 @@ import interactionPlugin from '@fullcalendar/interaction';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Calendar } from '@fullcalendar/core';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
-import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-
+import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import API from '../../config/env/local'
 // export default () => (
 //   <Popup trigger={<button> Trigger</button>} position="right center">
 //     <div>Popup content here !!</div>
@@ -22,7 +30,32 @@ import 'reactjs-popup/dist/index.css';
 //   }
 
 export default function FullCalendarApp() {
+  const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const [clickUser,setclickUser]=useState({employeeFirstName:"michal",employeeLastName:"prober",employeeAddress:"chazon hish",employeePhone:"0533114285",employeeEmail:"michalprober@gmail.com"})
 
+    const handleClickOpenEmployee = (id) => {
+      // fetch(`${API.LOGIN_URL}api/Employee/${id}`, {
+      //   method: 'GET',
+      //   // body: JSON.stringify({})
+      // })
+      //   .then(res => res.json()).then(data => {
+      //     debugger;
+      //     console.log(data)
+      //     if (data.Data != null) {
+      //       let employee = data.Data
+      //       setclickUser(employee)
+      //     }
+      //     else alert("שגיאת מערכת")
+      //   }
+      //   ).catch(err => console.log(err.message))
+      setOpen(true);
+    };
+  
+    const handleCloseEmployee = () => {
+      setOpen(false);
+    };
   const events = [
     {
       id: 1,
@@ -178,9 +211,34 @@ export default function FullCalendarApp() {
       initialView="dayGridWeek"
           events={events}
           nowIndicator
-          // eventClick={(e) =>poup(e)}
+           eventClick={handleClickOpenEmployee()}
+           variant="outlined"  
         />
+
+        <Dialog
+          fullScreen={fullScreen}
+          open={open}
+          onClose={handleCloseEmployee}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title">
+            {clickUser.employeeFirstName} {clickUser.employeeLastName}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              {clickUser.employeePhone}
+              <br/>
+              {clickUser.employeeEmail}
+              <br/>
+              {clickUser.employeeAddress}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseEmployee} autoFocus>
+              סגירה
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
-  }
-
+}
