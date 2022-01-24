@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -25,13 +26,15 @@ export default function AlignItemsList() {
       ).catch(err => console.log(err.message))
   })
   return (
-    <List sx={{ marginTop:'100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+
+
+    <List sx={{ marginTop:'100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
     {lists.map((item,index)=>(<div>
-      <ListItem alignItems="flex-start" key={index}>
+      <ListItem alignItems='flex-start' key={index}>
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar alt="Remy Sharp">{item.employeeFirstName.charAt(0).toUpperCase()}</Avatar>
         </ListItemAvatar>
-        <ListItemText
+        <ListItemText sx={{textAlign:"center"}}
           primary={`${item.employeeFirstName} ${item.employeeLastName}`}
           secondary={
             <React.Fragment>
