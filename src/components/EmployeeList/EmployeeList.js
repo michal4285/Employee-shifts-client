@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -25,29 +26,31 @@ export default function AlignItemsList() {
       ).catch(err => console.log(err.message))
   })
   return (
-    <List sx={{ marginTop:'100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-    {lists.map((item,index)=>(<div key={index}>
-      <ListItem alignItems="flex-start" >
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary={`${item.employeeFirstName} ${item.employeeLastName}`}
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-               {item.employeeEmail}
-              </Typography>
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" /></div>))}
+
+
+    <List sx={{ marginTop: '100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      {lists.map((item, index) => (<div key={index}>
+        <ListItem alignItems="flex-start" >
+          <ListItemAvatar>
+            <Avatar alt="Remy Sharp">{item.employeeFirstName.charAt(0).toUpperCase()}</Avatar>
+          </ListItemAvatar>
+          <ListItemText sx={{ textAlign: "center" }}
+            primary={`${item.employeeFirstName} ${item.employeeLastName}`}
+            secondary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {item.employeeEmail}
+                </Typography>
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+        <Divider variant="inset" component="li" /></div>))}
     </List>
   );
 }

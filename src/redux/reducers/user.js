@@ -29,12 +29,12 @@ export default produce((state, action) => {
       state.email = action.payload
       break;
     case 'SET_EMPLOYEE':
-      state.email = action.payload.employeeEmail
-      state.password = action.payload.employeePassword
       state.firstname = action.payload.employeeFirstName
       state.lastName = action.payload.employeeLastName
-      state.phone = action.payload.employeePhone
       state.address = action.payload.employeeAddress
+      state.phone = action.payload.employeePhone
+      state.email = action.payload.employeeEmail
+      state.password = action.payload.employeePassword 
       break;
     default:
       return state;

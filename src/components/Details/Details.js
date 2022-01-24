@@ -19,26 +19,26 @@ const useStyles = makeStyles((theme) => ({
 function mapStateToProps(state) {
     return {
         employee: state.user,
-        
+
     };
 }
 
 
 function Details(props) {
-    const {employee} = props
+    const { employee } = props
     debugger;
     const classes = useStyles()
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
     const [address, setAddress] = useState()
     const [tel, setTel] = useState()
-    // const [email, setEmail] = useState()
+    const [email, setEmail] = useState()
     const [originalPassword, setOriginalPassword] = useState()
     const [newPassword, setNewPassword] = useState()
     const [confirmPassword, setConfirmPassword] = useState()
     const [newpasswordMessage, setnewpasswordMessage] = useState()
     const [originalPasswordMessage, setoriginalPasswordMessage] = useState()
-    // const [emailMessage, setemailMessage] = useState()
+    const [emailMessage, setemailMessage] = useState()
     const [telMessage, settelMessage] = useState()
     useEffect(() => {
         // alert(firstName)
@@ -53,7 +53,7 @@ function Details(props) {
             "employeeLastName": lastName,
             "employeeAddress": address,
             "employeePhone": tel,
-            //   "employeeEmail": email,
+            "employeeEmail": email,
             "employeePassword": newPassword,
         });
 
@@ -64,7 +64,7 @@ function Details(props) {
             redirect: 'follow'
         };
 
-        fetch(`${API.LOGIN_URL}employee/Update`, requestOptions)
+        fetch(`${API.LOGIN_URL}Employee/Update`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result)
@@ -77,10 +77,10 @@ function Details(props) {
     }
     const Validate = () => {
         let flage = true
-        // if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-        //   flage = false
-        //   setemailMessage("מייל לא חוקי")
-        // }
+        if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+            flage = false
+            setemailMessage("מייל לא חוקי")
+        }
         if (newPassword != confirmPassword) {
             setnewpasswordMessage("אימות נכשל")
         }
@@ -116,19 +116,16 @@ function Details(props) {
                 <br />
                 <TextField onChange={(e) => setTel(e.target.value)} defaultValue={employee.phone} id="outlined-basic" label="טלפון" variant="outlined" className='textField ml-5' />
                 <p style={{ color: "red" }}>{telMessage}</p>
-                <br />
-                {/* <TextField onChange={(e) => setEmail(e.target.value)} defaultValue={employee.email} id="outlined-basic" label="אימייל" variant="outlined" className='textField ml-5' />
-                <p style={{ color: "red" }}>{emailMessage}</p> */}
-                {/* <br /> */}
-                <TextField onChange={(e) => { if (e.target.value == employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct"); }} id="outlined-basic" label="סיסמתך המקורית" variant="outlined" className='textField ml-5' />
+                <TextField onChange={(e) => setEmail(e.target.value)} defaultValue={employee.email} id="outlined-basic" label="אימייל" variant="outlined" className='textField ml-5' />
+                <p style={{ color: "red" }}>{emailMessage}</p>
+                <TextField onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct"); }} id="outlined-basic" label="סיסמתך המקורית" variant="outlined" className='textField ml-5' />
                 <p style={{ color: "red" }}>{originalPasswordMessage}</p>
-                <br />
                 <TextField onChange={(e) => setNewPassword(e.target.value)} id="outlined-basic" label="סיסמא חדשה" variant="outlined" className=' ml-5' />
                 <p style={{ color: "red" }}>{newpasswordMessage}</p>
-                <TextField onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic" label="אימות סיסמא" variant="outlined" className=' ml-1' />
+                <TextField onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic" label="אימות סיסמא" variant="outlined" className=' ml-5' />
 
                 <br />
-                <Button variant="contained" color="primary" onClick={() => Validate()}>
+                <Button className='ml-5' variant="contained" color="primary" onClick={() => Validate()}>
                     אישור
                 </Button>
             </form>
