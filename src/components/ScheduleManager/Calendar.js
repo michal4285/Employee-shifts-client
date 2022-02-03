@@ -17,38 +17,40 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import API from '../../config/env/local'
- 
+import { event } from 'jquery';
+
 export default function FullCalendarApp() {
   const [open, setOpen] = useState(false);
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const [clickUser,setclickUser]=useState({employeeFirstName:"michal",employeeLastName:"prober",employeeAddress:"chazon hish",employeePhone:"0533114285",employeeEmail:"michalprober@gmail.com",start_shit:10,end_shift:6})
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const [clickUser, setclickUser] = useState({ employeeFirstName: "michal", employeeLastName: "prober", employeeAddress: "chazon hish", employeePhone: "0533114285", employeeEmail: "michalprober@gmail.com", start_shit: 10, end_shift: 6 })
 
-    const handleClickOpenEmployee = (id) => {
-      fetch(`${API.LOGIN_URL}api/Employee/${id}`, {
-        method: 'GET',
-        // body: JSON.stringify({})
-      })
-        .then(res => res.json()).then(data => {
-          debugger;
-          console.log(data)
-          if (data.Data != null) {
-            let employee = data.Data
-            setclickUser(employee)
-          }
-          else alert("שגיאת מערכת")
+  const handleClickOpenEmployee = (id) => {
+    console.log(id);
+    fetch(`${API.LOGIN_URL}employee/GetEmployeeId${id}`, {
+      method: 'GET'
+      // body: JSON.stringify({})
+    })
+      .then(res => res.json()).then(data => {
+        debugger;
+        console.log(data)
+        if (data.Data != null) {
+          let employee = data.Data
+          setclickUser(employee)
         }
-        ).catch(err => console.log(err.message))
-      setOpen(true);
-    };
-  
-    const handleCloseEmployee = () => {
-      setOpen(false);
-    };
+        else alert("שגיאת מערכת")
+      }
+      ).catch(err => console.log(err.message))
+    setOpen(true);
+  };
+
+  const handleCloseEmployee = () => {
+    setOpen(false);
+  };
   const events = [
     {
       id: 1,
-      title: 'shoshna',
+      title: 'shoshana',
       start: '2021-10-03T00:00:00',
       end: '2021-10-03T07:00:00',
     },
@@ -63,21 +65,21 @@ export default function FullCalendarApp() {
       title: 'chayim',
       start: '2021-10-03T07:00:00',
       end: '2021-10-03T16:00:00',
-      color:"green"
+      color: "green"
     },
     {
       id: 4,
       title: 'michal',
       start: '2021-10-03T16:00:00',
       end: '2021-10-03T23:59:60',
-      color:"pink"
+      color: "pink"
     },
     {
       id: 5,
       title: 'yael',
       start: '2021-10-03T16:00:00',
       end: '2021-10-03T23:59:60',
-      color:"pink"
+      color: "pink"
     },
     {
       id: 1,
@@ -87,7 +89,7 @@ export default function FullCalendarApp() {
     },
     {
       id: 2,
-      title: 'elchana',
+      title: 'elchanan',
       start: '2021-10-04T00:00:00',
       end: '2021-10-04T07:00:00',
     },
@@ -96,21 +98,21 @@ export default function FullCalendarApp() {
       title: 'shoshana',
       start: '2021-10-04T07:00:00',
       end: '2021-10-04T16:00:00',
-      color:"green"
+      color: "green"
     },
     {
       id: 4,
       title: 'noa',
       start: '2021-10-04T16:00:00',
       end: '2021-10-04T23:59:60',
-      color:"pink"
+      color: "pink"
     },
     {
       id: 5,
       title: 'tamar',
       start: '2021-10-04T16:00:00',
       end: '2021-10-04T23:59:60',
-      color:"pink"
+      color: "pink"
     },
     {
       id: 1,
@@ -129,21 +131,21 @@ export default function FullCalendarApp() {
       title: 'chana',
       start: '2021-10-05T07:00:00',
       end: '2021-10-05T16:00:00',
-      color:"green"
+      color: "green"
     },
     {
       id: 4,
       title: 'shira',
       start: '2021-10-05T16:00:00',
       end: '2021-10-05T23:59:60',
-      color:"pink"
+      color: "pink"
     },
     {
       id: 5,
       title: 'zvi',
       start: '2021-10-05T16:00:00',
       end: '2021-10-05T23:59:60',
-      color:"pink"
+      color: "pink"
     },
     {
       id: 1,
@@ -162,74 +164,75 @@ export default function FullCalendarApp() {
       title: 'shoshana',
       start: '2021-10-04T07:00:00',
       end: '2021-10-04T16:00:00',
-      color:"green"
+      color: "green"
     },
     {
       id: 4,
       title: 'noa',
       start: '2021-10-06T16:00:00',
       end: '2021-10-06T23:59:60',
-      color:"pink"
+      color: "pink"
     },
     {
       id: 5,
       title: 'levana',
       start: '2021-10-06T16:00:00',
       end: '2021-10-06T23:59:60',
-      color:"pink"
+      color: "pink"
     },
     {
       id: 3,
       title: 'chana',
       start: '2021-10-06T07:00:00',
       end: '2021-10-06T16:00:00',
-      color:"green"
+      color: "green"
     }
 
     // { id: 3, title: 'event 3', start: '2021-08-27', end: '2021-08-27' },
   ];
-    return (
-      <div className="App">
-        <FullCalendar
-      headerToolbar={{
-        center:'dayGridWeek,timeGridDay',
-      }}
-      themeSystem='bootstrap'   
-      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-      theme= 'bootstrap3'    
-      initialView="dayGridWeek"
-          events={events}
-          nowIndicator
-          eventClick={(e)=>handleClickOpenEmployee(e.start,e.end)}
-           variant="outlined"  
-        />
+  return (
+    <div className="App">
+      <FullCalendar
+        headerToolbar={{
+          center: 'dayGridWeek,timeGridDay',
+        }}
+        themeSystem='bootstrap'
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        theme='bootstrap3'
+        initialView="dayGridWeek"
+        events={events}
+        nowIndicator
+        eventClick={(e) => handleClickOpenEmployee(e.start_shit, e.end_shift)}
+        variant="outlined"
+      />
 
-        <Dialog
-          fullScreen={fullScreen}
-          open={open}
-          onClose={handleCloseEmployee}
-          aria-labelledby="responsive-dialog-title"
-        >
-          <DialogTitle id="responsive-dialog-title">
-            {clickUser.employeeFirstName} {clickUser.employeeLastName}
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              {clickUser.employeePhone}
-              <br/>
-              {clickUser.employeeEmail}
-              <br/>
-              {clickUser.employeeAddress}
-              <br/>
-        shift:{clickUser.start_shit}-{clickUser.end_shift}
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseEmployee} autoFocus>
-              סגירה
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    );
+      <Dialog 
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleCloseEmployee}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title" style={{backgroundColor:"lightblue",color:"blue"}}>
+          {clickUser.employeeFirstName} {clickUser.employeeLastName}
+        </DialogTitle>
+        <DialogContent style={{backgroundColor:"lightblue"}}>
+          <DialogContentText style={{color:"blue"}}> 
+
+            {clickUser.employeePhone}
+            <br />
+            {clickUser.employeeEmail}
+            <br />
+            {clickUser.employeeAddress}
+            <br />
+            shift:{clickUser.start_shit}-{clickUser.end_shift}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions style={{backgroundColor:"lightblue"}}>
+          <Button onClick={handleCloseEmployee} autoFocus style={{backgroundColor:"blue",color:"lightblue"}}>
+            סגירה
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 }
