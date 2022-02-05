@@ -3,6 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import 'bootstrap/dist/css/bootstrap.css';
+import moment from 'moment';
 import { Calendar } from '@fullcalendar/core';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import Popup from 'reactjs-popup';
@@ -22,10 +23,14 @@ export default function FullCalendarApp() {
   const [open, setOpen] = useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const [clickUser,setclickUser]=useState({employeeFirstName:"michal",employeeLastName:"prober",employeeAddress:"chazon hish",employeePhone:"0533114285",employeeEmail:"michalprober@gmail.com",start_shit:10,end_shift:6})
+    const [clickUser,setclickUser]=useState({employeeFirstName:"michal",employeeLastName:"prober",employeeAddress:"chazon hish",employeePhone:"0533114285",employeeEmail:"michalprober@gmail.com"})
+    const [TimeShift,setTimeShift]=useState([])
+ 
 
-    const handleClickOpenEmployee = (id) => {
-      fetch(`${API.LOGIN_URL}api/Employee/${id}`, {
+ 
+
+    const handleClickOpenEmployee = (start,id) => {
+      fetch(`${API.LOGIN_URL}employee/GetEmployeeId?id=${id}`, {
         method: 'GET',
         // body: JSON.stringify({})
       })
@@ -35,11 +40,12 @@ export default function FullCalendarApp() {
           if (data.Data != null) {
             let employee = data.Data
             setclickUser(employee)
+            setTimeShift(start)
+            setOpen(true);
           }
           else alert("שגיאת מערכת")
         }
         ).catch(err => console.log(err.message))
-      setOpen(true);
     };
   
     const handleCloseEmployee = () => {
@@ -172,10 +178,10 @@ export default function FullCalendarApp() {
       color:"pink"
     },
     {
-      id: 5,
+      id: 6,
       title: 'levana',
-      start: '2021-10-06T16:00:00',
-      end: '2021-10-06T23:59:60',
+      start: '2022-02-02T13:11:11',
+      end: '2022-02-02T14:22:22',
       color:"pink"
     },
     {
@@ -200,7 +206,7 @@ export default function FullCalendarApp() {
       initialView="dayGridWeek"
           events={events}
           nowIndicator
-          eventClick={(e)=>handleClickOpenEmployee(e.start,e.end)}
+          eventClick={(e)=>handleClickOpenEmployee(e.el.fcSeg.eventRange.instance.range,e.el.fcSeg.eventRange.def.publicId)}
            variant="outlined"  
         />
 
@@ -218,10 +224,9 @@ export default function FullCalendarApp() {
               {clickUser.employeePhone}
               <br/>
               {clickUser.employeeEmail}
-              <br/>
-              {clickUser.employeeAddress}
-              <br/>
-        shift:{clickUser.start_shit}-{clickUser.end_shift}
+              <br/> 
+        shift: <div style={{color:'red'}}>{moment(moment(TimeShift.start, "h:mm a").diff(moment('02:00:00', "h:mm a"))).utc().format('h:mm a')} - {moment(moment(TimeShift.end, "h:mm a").diff(moment('02:00:00', "h:mm a"))).utc().format('h:mm a')}
+              </div>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
