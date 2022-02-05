@@ -16,6 +16,7 @@ import './Register.css';
 import { connect } from 'react-redux';
 import { setemployee } from '../../redux/actions/user'
 import API from '../../config/env/local'
+import image from './2.jpg';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -104,12 +105,7 @@ function SignUp(props) {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+        <img style={{height:'100px',width:'100px'}} src={image} />
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>

@@ -18,6 +18,7 @@ import {setexit} from '../../redux/actions/settings'
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import API from '../../config/env/local'
+import image from './2.jpg';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -67,13 +68,11 @@ function SignIn(props) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
+      <div className={classes.paper}>         
+        <img style={{height:'100px',width:'100px'}} src={image} />
+        {/* <Typography style={{color:'blue'}} component="h1" variant="h5">
           Sign in
-        </Typography>
+        </Typography> */}
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
