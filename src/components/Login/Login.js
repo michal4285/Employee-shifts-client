@@ -80,7 +80,7 @@ function SignIn(props) {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="כתובת מייל"
             name="email"
             autoComplete="email"
             autoFocus
@@ -92,7 +92,7 @@ function SignIn(props) {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="סיסמא"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -109,7 +109,7 @@ function SignIn(props) {
             className={classes.submit}
             onClick={() => Signin()}
           >
-            Sign In
+            התחברות
           </Button>         
         </form>
       </div>

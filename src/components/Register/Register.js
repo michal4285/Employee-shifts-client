@@ -86,14 +86,14 @@ function SignUp(props) {
     let flage = true
     if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
       flage = false
-      setemailMessage("email isn't valid")
+      setemailMessage("מייל לא חוקי")
     }
     if (password.length < 6) {
-      setPasswordMessage("password isn't valid")
+      setPasswordMessage("סיסמא לא חוקית")
       flage = false
     }
     if (phone.length < 10) {
-      setPhoneMessage("phone isn't valid")
+      setPhoneMessage("מספר טלפון לא חוקי")
       flage = false
     }
     if (flage == true)
@@ -184,7 +184,7 @@ function SignUp(props) {
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="current-password"
+                  autoComplete="סיסמא נוכחית"
                   onChange={(e) => setpassward(e.target.value)}
                 />
               </Grid>

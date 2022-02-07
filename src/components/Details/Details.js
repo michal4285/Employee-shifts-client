@@ -77,10 +77,10 @@ function Details(props) {
     }
     const Validate = () => {
         let flage = true
-        if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-            flage = false
-            setemailMessage("מייל לא חוקי")
-        }
+        // if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+        //     flage = false
+        //     setemailMessage("מייל לא חוקי")
+        // }
         if (newPassword != confirmPassword) {
             setnewpasswordMessage("אימות נכשל")
         }
@@ -118,7 +118,7 @@ function Details(props) {
                 <p style={{ color: "red" }}>{telMessage}</p>
                 <TextField onChange={(e) => setEmail(e.target.value)} defaultValue={employee.email} id="outlined-basic" label="אימייל" variant="outlined" className='textField ml-5' />
                 <p style={{ color: "red" }}>{emailMessage}</p>
-                <TextField onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct"); }} id="outlined-basic" label="סיסמתך המקורית" variant="outlined" className='textField ml-5' />
+                <TextField onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct"); }} id="outlined-basic" label="סיסמא מקורית" variant="outlined" className='textField ml-5' />
                 <p style={{ color: "red" }}>{originalPasswordMessage}</p>
                 <TextField onChange={(e) => setNewPassword(e.target.value)} id="outlined-basic" label="סיסמא חדשה" variant="outlined" className=' ml-5' />
                 <p style={{ color: "red" }}>{newpasswordMessage}</p>

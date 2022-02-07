@@ -220,7 +220,6 @@ export default function FullCalendarApp() {
         </DialogTitle>
         <DialogContent style={{backgroundColor:"lightblue"}}>
           <DialogContentText style={{color:"blue"}}> 
-
             {clickUser.employeePhone}
             <br />
             {clickUser.employeeEmail}
