@@ -7,7 +7,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import API from '../../config/env/local'
+import API from '../../config/env/local';
+import image from './2.jpg';
 
 export default function AlignItemsList() {
   const [lists, setlists] = useState([,])
@@ -26,9 +27,8 @@ export default function AlignItemsList() {
       ).catch(err => console.log(err.message))
   })
   return (
-
-
     <List sx={{margin:"35%", marginTop: '100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <img style={{ height: '100px', width: '100px', marginRight: '90%'}} src={image} />
       {lists.map((item, index) => (<div key={index}>
         <ListItem alignItems="flex-start" style={{width:"100%",heght:"100%"}}>
           <ListItemAvatar>
