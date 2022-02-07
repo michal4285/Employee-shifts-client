@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import API from '../../config/env/local';
 import { connect } from 'react-redux';
 import { setemployee } from '../../redux/actions/user';
+import image from './2.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,10 +78,11 @@ function Details(props) {
     }
     const Validate = () => {
         let flage = true
-        // if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-        //     flage = false
-        //     setemailMessage("מייל לא חוקי")
-        // }
+ 
+        if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+            flage = false
+            setemailMessage("אימייל לא חוקי")
+        }
         if (newPassword != confirmPassword) {
             setnewpasswordMessage("אימות נכשל")
         }
@@ -102,34 +104,37 @@ function Details(props) {
 
 
     return (
-        <div className="main mt-5">
-            <form className={classes.root} noValidate autoComplete="off" >
-                {/* <TextField id="standard-basic" label="Standard" /> */}
-                {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
-                <div className="ml-20" style={{marginLeft:"31%",color:"blue",fontSize:"200%", fontFamily:"Cursive"}}>עריכת פרטים אישיים</div>
-
-                <TextField onChange={(e) => setFirstName(e.target.value)} defaultValue={employee.firstname} id="outlined-basic" label="שם פרטי" variant="outlined" className='textField ml-5' />
-                <br />
-                <TextField onChange={(e) => setLastName(e.target.value)} defaultValue={employee.lastName} id="outlined-basic" label="שם משפחה" variant="outlined" className='textField ml-5' />
-                <br />
-                <TextField onChange={(e) => setAddress(e.target.value)} defaultValue={employee.address} id="outlined-basic" label="כתובת" variant="outlined" className='textField ml-5' />
-                <br />
-                <TextField onChange={(e) => setTel(e.target.value)} defaultValue={employee.phone} id="outlined-basic" label="טלפון" variant="outlined" className='textField ml-5' />
-                <p style={{ color: "red" }}>{telMessage}</p>
-                <TextField onChange={(e) => setEmail(e.target.value)} defaultValue={employee.email} id="outlined-basic" label="אימייל" variant="outlined" className='textField ml-5' />
-                <p style={{ color: "red" }}>{emailMessage}</p>
-                <TextField onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct"); }} id="outlined-basic" label="סיסמא מקורית" variant="outlined" className='textField ml-5' />
-                <p style={{ color: "red" }}>{originalPasswordMessage}</p>
-                <TextField onChange={(e) => setNewPassword(e.target.value)} id="outlined-basic" label="סיסמא חדשה" variant="outlined" className=' ml-5' />
-                <p style={{ color: "red" }}>{newpasswordMessage}</p>
-                <TextField onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic" label="אימות סיסמא" variant="outlined" className=' ml-5' />
-
-                <br />
-                <Button className='ml-5' variant="contained" color="primary" onClick={() => Validate()}>
-                    אישור
-                </Button>
-            </form>
-        </div>
+            <div className="main mt-5">
+                <form className={classes.root} noValidate autoComplete="off" >
+                    {/* <TextField id="standard-basic" label="Standard" /> */}
+                    {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
+                    <img style={{ height: '100px', width: '100px', marginRight: '90%'}} src={image} />
+                    <div className="ml-20" style={{ marginLeft: "40%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
+                    עריכת פרטים אישיים
+                    </div>
+                    <TextField
+                        onChange={(e) => setFirstName(e.target.value)} defaultValue={employee.firstname} id="outlined-basic" label="שם פרטי" variant="outlined" className='textField ml-5' />
+                    <br />
+                    <TextField onChange={(e) => setLastName(e.target.value)} defaultValue={employee.lastName} id="outlined-basic" label="שם משפחה" variant="outlined" className='textField ml-5' />
+                    <br />
+                    <TextField onChange={(e) => setAddress(e.target.value)} defaultValue={employee.address} id="outlined-basic" label="כתובת" variant="outlined" className='textField ml-5' />
+                    <br />
+                    <TextField onChange={(e) => setTel(e.target.value)} defaultValue={employee.phone} id="outlined-basic" label="טלפון" variant="outlined" className='textField ml-5' />
+                    <p style={{ color: "red" }}>{telMessage}</p>
+                    <TextField onChange={(e) => setEmail(e.target.value)} defaultValue={employee.email} id="outlined-basic" label="אימייל" variant="outlined" className='textField ml-5' />
+                    <p style={{ color: "red", marginLeft: "44%" }}>{emailMessage}</p>
+                    <TextField onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct"); }} id="outlined-basic" label="סיסמתך המקורית" variant="outlined" className='textField ml-5' />
+                    <p style={{ color: "red", marginLeft: "44%" }}>{originalPasswordMessage}</p>
+                    <TextField onChange={(e) => setNewPassword(e.target.value)} id="outlined-basic" label="סיסמא חדשה" variant="outlined" className=' ml-5' />
+                    <br/>
+                    <TextField onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic" label="אימות סיסמא" variant="outlined" className=' ml-5' />
+                    <p style={{ color: "red", marginLeft: "44%"  }}>{newpasswordMessage}</p>
+                    <br />
+                    <Button className='ml-5' variant="contained" color="primary" onClick={() => Validate()}>
+                        אישור
+                    </Button>
+                </form>
+            </div>     
     );
 }
 export default connect(mapStateToProps)(Details)
