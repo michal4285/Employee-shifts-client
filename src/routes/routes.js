@@ -12,17 +12,30 @@ import ScheduleManager from '../components/ScheduleManager/ScheduleManager';
 import Details from '../components/Details/Details';
 import EmployeeList from '../components/EmployeeList/EmployeeList';
 import Navbar from '../components/Navbar/Navbar';
+import ScheduleEmployee from '../components/ScheduleEmployee/ScheduleEmployee'
+ 
+ 
+
+
+function mapStateToProps(state) {
+    return {
+        employee:state.user,
+        settings: state.settings,
+    };
+}
 
 function Routess(props) {
     useEffect(() => { }, [])
-
+debugger;
+    let {employee,settings } = props;
     return (
         <div>
-            <Routes>
-                <Route path="/EmployeesList" element={<EmployeeList/>} />
+           <Routes>
+               {employee.id === 1 &&<Route path="/EmployeesList" element={<EmployeeList/>} />}
                 <Route path="/Login" element={<Login/>} />
-                <Route path="/Register" element={<Register/>} />
-                <Route path="/ScheduleManager" element={<ScheduleManager/>} />
+                {employee.id === 1 &&<Route path="/Register" element={<Register/>} />}
+                <Route path="/Schedule" element={<ScheduleManager/>} />
+                {employee.id !== 1 &&<Route path="/ScheduleEmployee" element={<ScheduleEmployee/>} />}
                 <Route path="/Details" element={<Details/>} />
                 <Route path="/Navbar" element={<Navbar/>} />
                 <Route path="/" element={<Login/>} />
@@ -30,4 +43,4 @@ function Routess(props) {
             </div>
     );
 }
-export default Routess;
+export default connect(mapStateToProps)(Routess)

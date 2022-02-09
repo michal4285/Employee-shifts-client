@@ -31,11 +31,22 @@ export default function AlignItemsList() {
     <img style={{ height: '100px', width: '100px', marginRight: '90%'}} src={image} />
       {lists.map((item, index) => (<div key={index}>
         <ListItem alignItems="flex-start" style={{width:"100%",heght:"100%"}}>
-          <ListItemAvatar>
-            <Avatar alt="Remy Sharp">{item.employeeFirstName.charAt(0).toUpperCase()}</Avatar>
-          </ListItemAvatar>
           <ListItemText sx={{ textAlign: "center" }}
-            primary={`${item.employeeFirstName} ${item.employeeLastName}`}
+            // primary={`${item.employeeFirstName} ${item.employeeLastName}`}
+            
+            primary={
+            <React.Fragment>
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="h8"
+                  color="text.primary"
+                  align='right'
+                >
+                  <p style={{marginRight:'5%'}} dir="rtl">{item.employeeFirstName}  {item.employeeLastName}</p>
+                </Typography>
+              </React.Fragment>
+              }
             secondary={
               <React.Fragment>
                 <Typography
@@ -43,12 +54,16 @@ export default function AlignItemsList() {
                   component="span"
                   variant="body2"
                   color="text.primary"
+                  align='right'
                 >
-                  {item.employeeEmail}
+                  <p dir="rtl" style={{marginRight:'5%'}}>{item.employeeEmail}</p>
                 </Typography>
               </React.Fragment>
             }
-          />
+          />   
+           <ListItemAvatar>
+            <Avatar alt="Remy Sharp">{item.employeeFirstName.charAt(0).toUpperCase()}</Avatar>
+          </ListItemAvatar>
         </ListItem>
         <Divider variant="inset" component="li"/></div>))}
     </List>

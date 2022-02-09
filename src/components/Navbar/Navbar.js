@@ -16,7 +16,8 @@ const useStyles = makeStyles({
 
 function mapStateToProps(state) {
     return {
-        settings: state.settings
+        settings: state.settings,
+        employee:state.user
     };
 }
 function CenteredTabs(props) {
@@ -24,9 +25,9 @@ function CenteredTabs(props) {
     let navigate = useNavigate();
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-    let { settings } = props;
+    let { settings,employee } = props;
     debugger;
-
+     
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -51,13 +52,13 @@ function CenteredTabs(props) {
                         textColor="primary"
                         centered
                     >
-                        <Tab label="לוח עובדים" onClick={() => navigate('/ScheduleManager')} />
-                        {/* <Tab label="יציאה" onClick={() => window.location.replace('http://localhost:3000/Login')} /> */}
-                        <Tab label="פרטים אישיים" onClick={() => navigate('/Details')} />
-                        <Tab label="רשימת עובדים" onClick={() => navigate('/EmployeesList')} />
-                        <Tab label="עובד חדש" onClick={() => navigate('/Register')} />
+                        <Tab label="לוח משמרות" onClick={() => navigate('/Schedule')} />
+                         <Tab label="פרטים אישיים" onClick={() => navigate('/Details')} />
+                        {employee.id !== 1 &&<Tab label="עריכת משמרות" onClick={() => navigate('/ScheduleEmployee')} />}
+                        {employee.id === 1 &&<Tab label="רשימת עובדים" onClick={() => navigate('/EmployeesList')} />}
+                        {employee.id === 1 &&<Tab label="עובד חדש" onClick={() => navigate('/Register')} />}
                         <Tab label="הודעות" onClick={() => navigate('/BoxChat')} />
-                        <Tab label="הגדרות מערכת" onClick={() => navigate('/Setting')} />
+                        {employee.id === 1 &&<Tab label="הגדרות מערכת" onClick={() => navigate('/Setting')} />}
                         <Tab label="יציאה" onClick={() => { nevigatelogin() }} />
                     </Tabs>
                 </Paper>

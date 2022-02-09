@@ -58,7 +58,7 @@ function SignIn(props) {
           let employee = data.Data
           props.dispatch(setemployee(employee))
           props.dispatch(setexit(false))
-          navigate('/ScheduleManager')
+          navigate('/Schedule')
         }
         else alert("משתמש לא קיים במערכת")
       }
@@ -74,7 +74,7 @@ function SignIn(props) {
           Sign in
         </Typography> */}
         <form className={classes.form} noValidate>
-          <TextField
+         <TextField
             variant="outlined"
             margin="normal"
             required
@@ -85,7 +85,7 @@ function SignIn(props) {
             autoComplete="email"
             autoFocus
             onChange={(e) => setemail(e.target.value)}
-          />
+          /> 
           <TextField
             variant="outlined"
             margin="normal"
@@ -97,6 +97,7 @@ function SignIn(props) {
             id="password"
             autoComplete="current-password"
             onChange={(e) => setpassward(e.target.value)}
+            align='right'
           />
           {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
