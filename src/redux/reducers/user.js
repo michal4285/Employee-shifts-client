@@ -1,6 +1,6 @@
 import produce from 'immer';
 const initialState = {
-    id:2,
+    id:-1,
     firstname: 'Michal',
     lastName: 'Prober',
     password: '0533114285',

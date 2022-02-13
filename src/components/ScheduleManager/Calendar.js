@@ -181,7 +181,8 @@ export default function FullCalendarApp() {
       title: 'levana',  
       start: '2021-10-06T16:00:00',
       end: '2021-10-06T23:59:60',
-      color: "pink"
+      color: "pink",
+      cursor:'pointer'
     },
     {
       id: 3,
@@ -206,6 +207,7 @@ export default function FullCalendarApp() {
         events={events}
         nowIndicator
         eventClick={(e)=>handleClickOpenEmployee(e.el.fcSeg.eventRange.instance.range,e.el.fcSeg.eventRange.def.publicId)}
+        eventMouseEnter={console.log('mm')}
         variant="outlined"
       />
 

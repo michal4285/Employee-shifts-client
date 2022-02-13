@@ -31,11 +31,11 @@ debugger;
     return (
         <div>
            <Routes>
-               {employee.id === 1 &&<Route path="/EmployeesList" element={<EmployeeList/>} />}
+                <Route path="/EmployeesList" element={<EmployeeList/>} />
                 <Route path="/Login" element={<Login/>} />
-                {employee.id === 1 &&<Route path="/Register" element={<Register/>} />}
+                <Route path="/Register" element={<Register/>} />
                 <Route path="/Schedule" element={<ScheduleManager/>} />
-                {employee.id !== 1 &&<Route path="/ScheduleEmployee" element={<ScheduleEmployee/>} />}
+                <Route path="/ScheduleEmployee" element={<ScheduleEmployee/>} />
                 <Route path="/Details" element={<Details/>} />
                 <Route path="/Navbar" element={<Navbar/>} />
                 <Route path="/" element={<Login/>} />

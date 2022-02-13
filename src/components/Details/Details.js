@@ -66,7 +66,7 @@ function Details(props) {
         };
 
         fetch(`${API.LOGIN_URL}Employee/Update`, requestOptions)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
                 console.log(result)
                 debugger;
@@ -79,9 +79,9 @@ function Details(props) {
     const Validate = () => {
         let flage = true
  
-        if (email === "in correct") {
-            setemailMessage("אימייל לא קיים במערכת")
-        }
+        // if (email === "in correct") {
+        //     setemailMessage("אימייל לא קיים במערכת")
+        // }
         if (newPassword != confirmPassword) {
             setnewpasswordMessage("אימות נכשל")
         }
@@ -120,7 +120,7 @@ function Details(props) {
                     <br />
                     <TextField onChange={(e) => setTel(e.target.value)} defaultValue={employee.phone} id="outlined-basic" label="טלפון" variant="outlined" className='textField ml-5' />
                     <p style={{ color: "red" }}>{telMessage}</p>
-                    <TextField onChange={(e) => { if (e.target.value === employee.email) setEmail(e.target.value); else setEmail("in correct"); }}  id="outlined-basic" label="אימייל" variant="outlined" className='textField ml-5' />
+                    <TextField   id="outlined-basic" defaultValue={employee.email} disabled label="אימייל" variant="outlined" className='textField ml-5' />
                     <p style={{ color: "red", marginLeft: "44%" }}>{emailMessage}</p>
                     <TextField onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct"); }} id="outlined-basic" label="סיסמתך המקורית" variant="outlined" className='textField ml-5' />
                     <p style={{ color: "red", marginLeft: "44%" }}>{originalPasswordMessage}</p>
