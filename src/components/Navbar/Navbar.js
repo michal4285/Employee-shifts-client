@@ -17,7 +17,8 @@ const useStyles = makeStyles({
 function mapStateToProps(state) {
     return {
         settings: state.settings,
-        employee:state.user
+        employee:state.user,
+        setting:state.settings
     };
 }
 function CenteredTabs(props) {
@@ -25,7 +26,7 @@ function CenteredTabs(props) {
     let navigate = useNavigate();
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-    let { settings,employee } = props;
+    let { settings,employee,setting} = props;
     debugger;
      
 

@@ -1,98 +1,97 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
+import React, { useEffect, useState } from 'react';
+import './Setting.css';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import API from '../../config/env/local';
+import { connect } from 'react-redux';
+import { setSetting } from '../../redux/actions/settingShifts';
+import image from './2.jpg';
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
-  },
-  '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
   },
 }));
 
-const BootstrapDialogTitle = (props) => {
-  const { children, onClose, ...other } = props;
+function mapStateToProps(state) {
+  return {
+    settingShifts: state.settingShifts
+  };
+}
+
+
+function Setting(props) {
+  const { settingShifts } = props
+  debugger;
+  const classes = useStyles()
+  const [institutionId, setInstitutionId] = useState()
+  const [settingName, setSettingName] = useState()
+  const [settingValueInt, setSettingValueInt] = useState()
+  const [settingValueString, setSettingValueString] = useState()
+  const [settingValueDate, setSettingValueDate] = useState()
+  useEffect(() => {
+    // alert(firstName)
+  }, [])
+
+  const update = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "institutionId": institutionId,
+      "settingName": settingName,
+      "settingValueInt": settingValueInt,
+      "settingValueString": settingValueString,
+      "settingValueDate": settingValueDate,
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch(`${API.LOGIN_URL}Settings/Update`, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result)
+        debugger;
+        if (result.Data == null)
+          alert("עדכון ניכשל")
+        else props.dispatch(setSetting(result))
+      })
+      .catch(error => console.log('error', error));
+  }
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </DialogTitle>
-  );
-};
-
-BootstrapDialogTitle.propTypes = {
-  children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
-};
-
-export default function CustomizedDialogs() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
-      </Button>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button>
-        </DialogActions>
-      </BootstrapDialog>
+    <div className="main mt-5">
+      <form className={classes.root} noValidate autoComplete="off" >
+        {/* <TextField id="standard-basic" label="Standard" /> */}        {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
+        <img style={{ height: '100px', width: '100px', marginRight: '90%' }} src={image} />
+        <div className="ml-20" style={{ marginLeft: "40%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
+          עריכת הגדרות
+        </div>
+        <TextField onChange={(e) => setInstitutionId(e.target.value)} defaultValue={settingShifts.institutionId} id="outlined-basic" label="קוד מוסד" variant="outlined" className='textField ml-5' />
+        <br />
+        <TextField onChange={(e) => setSettingName(e.target.value)} id="outlined-basic" label="סוג הגדרה" variant="outlined" className='textField ml-5' />
+        <br />
+        <TextField onChange={(e) => setSettingValueInt(e.target.value)} id="outlined-basic" label="ערך מספרי" variant="outlined" className='textField ml-5' />
+        <br />
+        <TextField onChange={(e) => setSettingValueString(e.target.value)} id="outlined-basic" label="ערך מחזורתי" variant="outlined" className='textField ml-5' />
+        <br />
+        <TextField onChange={(e) => setSettingValueDate(e.target.value)} id="outlined-basic" label="תאריך " variant="outlined" className='textField ml-5' />
+        <br />
+        <Button className='ml-2' variant="contained" color="primary" onClick={() => update()}>
+          אישור
+        </Button>
+      </form>
     </div>
   );
 }
+export default connect(mapStateToProps)(Setting)
