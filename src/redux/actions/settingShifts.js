@@ -1,48 +1,48 @@
-export function setSettingInstitutionId(institutionId) {
+export function setnumfreedaysforeployee(numfreedaysforeployee) {
 
     return {
-        type: 'SET_SETTING_INSTITUTION_ID',
-        payload: institutionId,
+        type: 'SET_NUM_FREE_DAYS_FOR_EMPLOYEE',
+        payload: numfreedaysforeployee,
 
     };
 }
-export function setSettingName(settingName) {
+export function setnumshiftsforemployee(numshiftsforemployee) {
 
     return {
-        type: 'SET_SETTING_SETTING_NAME',
-        payload: settingName,
+        type: 'SET_NUM_SHIFTS_FOR_EMPLOYEE',
+        payload: numshiftsforemployee,
         
     };
 }
-export function setSettingValueInt(settingValueInt) {
+export function setnummissingemployeesinday(nummissingemployeesinda) {
 
     return {
-        type: 'SET_SETTING_SETTING_VALUE_INT',
-        payload: settingValueInt,
+        type: 'SET_MISSING_EMPLOYEES_IN_DAY',
+        payload: nummissingemployeesinda,
 
     };
 }
-export function setSettingValueString(settingValueString) {
+export function setnummissingemployeesinShift(nummissingemployeesinShift) {
 
     return {
-        type: 'SET_SETTING_SETTING_VALUE_STRING',
-        payload: settingValueString,
+        type: 'SET_NUM_MISSING_EMPLOYEES_IN_SHIFT',
+        payload: nummissingemployeesinShift,
 
     };
 }
-export function setSettingValueDate(settingValueDate) {
+export function setnumemployees(numemployees) {
 
     return {
-        type: 'SET_SETTING_SETTING_VALUE_DATE',
-        payload: settingValueDate,
+        type: 'SET_NUM_EMPLOYEES',
+        payload: numemployees,
 
     };
 }
-export function setSetting(settingShifts) {
+export function setdayofchangeshifts(dayofchangeshifts) {
 
     return {
-        type: 'SET_SETTING',
-        payload: settingShifts,
+        type: 'DAY_OF_CHANGE_SHIFTS',
+        payload: dayofchangeshifts,
 
     };
 }

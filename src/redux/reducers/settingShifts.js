@@ -1,35 +1,32 @@
 import produce from 'immer';
 
 const initialState = {
-    institutionId: 1,
-    settingName: "NumFreeDaysForEployee",
-    settingValueInt: 1,
-    settingValueString: null,
-    settingValueDate: null,
+    NumFreeDaysForEployee:1,
+    NumShiftsForEmployee:2,
+    NumMissingEmployeesInDay:3,
+    NumMissingEmployeesInShift:4,
+    NumEmployees:5,
+    DayOfChangeShifts:4
 }
 export default produce((state, action) => {
     switch (action.type) {
-        case 'SET_SETTING_INSTITUTION_ID':
-            state.institutionId = action.payload
+        case 'SET_NUM_FREE_DAYS_FOR_EMPLOYEE':
+            state.NumFreeDaysForEployee = action.payload
             break;
-        case 'SET_SETTING_SETTING_NAME':
-            state.settingName = action.payload
+        case 'SET_NUM_SHIFTS_FOR_EMPLOYEE':
+            state.NumShiftsForEmployee = action.payload
             break;
-        case 'SET_SETTING_SETTING_VALUE_INT':
-            state.settingValueInt = action.payload
+        case 'SET_MISSING_EMPLOYEES_IN_DAY':
+            state.NumMissingEmployeesInDay = action.payload
             break;
-        case 'SET_SETTING_SETTING_VALUE_STRING':
-            state.settingValueString = action.payload
+        case 'SET_NUM_MISSING_EMPLOYEES_IN_SHIFT':
+            state.NumMissingEmployeesInShift = action.payload
             break;
-        case 'SET_SETTING_SETTING_VALUE_DATE':
-            state.settingValueDate = action.payload
+        case 'SET_NUM_EMPLOYEES':
+            state.NumEmployees = action.payload
             break;
-        case 'SET_SETTING':
-            state.institutionId= action.payload.institutionId
-            state.settingName = action.payload.settingName
-            state.settingValueInt = action.payload.settingValueInt
-            state.settingValueString = action.payload.settingValueString
-            state.settingValueDate = action.payload.settingValueDate
+        case 'DAY_OF_CHANGE_SHIFTS':
+            state.DayOfChangeShifts= action.payload.institutionId
             break;
         default:
             return state;

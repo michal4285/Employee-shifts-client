@@ -29,26 +29,48 @@ function Setting(props) {
   const { settingShifts } = props
   debugger;
   const classes = useStyles()
-  const [institutionId, setInstitutionId] = useState()
-  const [settingName, setSettingName] = useState()
-  const [settingValueInt, setSettingValueInt] = useState()
-  const [settingValueString, setSettingValueString] = useState()
-  const [settingValueDate, setSettingValueDate] = useState()
+  const [freedaysforeployee, setfreedaysforeployee] = useState()
+  const [shiftsforemployee, setshiftsforemployee] = useState()
+  const [missingemployeesinday, setmissingemployeesinday] = useState()
+  const [missingemployeesinShift, setmissingemployeesinShift] = useState()
+  const [employeesnum, setemployeesnum] = useState()
+  const [changeshifts, setchangeshifts] = useState()
+
+  const[settings,setSettings]=useState([,])
+
   useEffect(() => {
-    // alert(firstName)
+    fetch(`${API.LOGIN_URL}settings/GetAll`, {
+      method: 'GET',
+      // body: JSON.stringify({})
+    }).then(res => res.json()).then(result => {
+         debugger;
+         if (result.Data != null) 
+        //  {props.dispatch(setnumfreedaysforeployee(result.Data[0].settingValueInt))
+        //  props.dispatch(setnumshiftsforemployee(result.Data[1].settingValueInt))
+        //  props.dispatch(setnummissingemployeesinday(result.Data[2].settingValueInt))
+        //  props.dispatch(setnummissingemployeesinShift(result.Data[3].settingValueInt))
+        //  props.dispatch(setnumemployees(result.Data[4].settingValueInt))
+        //  props.dispatch(setdayofchangeshifts(result.Data[5].settingValueInt))
+         setSettings(result.Data)
+        // }
+         else alert("אין עובדים במערכת")
+      }
+      ).catch(err => console.log(err.message))
   }, [])
 
   const update = () => {
+
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-      "institutionId": institutionId,
-      "settingName": settingName,
-      "settingValueInt": settingValueInt,
-      "settingValueString": settingValueString,
-      "settingValueDate": settingValueDate,
-    });
+    var raw = settings
+    raw[0].settingValueInt=freedaysforeployee
+    raw[1].settingValueInt=shiftsforemployee
+    raw[2].settingValueInt=missingemployeesinday
+    raw[3].settingValueInt=missingemployeesinShift
+    raw[4].settingValueInt=employeesnum
+    raw[5].settingValueInt=changeshifts
 
     var requestOptions = {
       method: 'POST',
@@ -58,13 +80,20 @@ function Setting(props) {
     };
 
     fetch(`${API.LOGIN_URL}Settings/Update`, requestOptions)
-      .then(response => response.text())
+      .then(response => response.json())
       .then(result => {
         console.log(result)
         debugger;
         if (result.Data == null)
           alert("עדכון ניכשל")
-        else props.dispatch(setSetting(result))
+        // else {
+        //   props.dispatch(setnumfreedaysforeployee(result[0].settingValueInt))
+        //   props.dispatch(setnumshiftsforemployee(result[1].settingValueInt))
+        //   props.dispatch(setnummissingemployeesinday(result[2].settingValueInt))
+        //   props.dispatch(setnummissingemployeesinShift(result[3].settingValueInt))
+        //   props.dispatch(setnumemployees(result[4].settingValueInt))
+        //   props.dispatch(setdayofchangeshifts(result[5].settingValueInt))
+        // }
       })
       .catch(error => console.log('error', error));
   }
@@ -77,15 +106,15 @@ function Setting(props) {
         <div className="ml-20" style={{ marginLeft: "40%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
           עריכת הגדרות
         </div>
-        <TextField onChange={(e) => setInstitutionId(e.target.value)} defaultValue={settingShifts.institutionId} id="outlined-basic" label="קוד מוסד" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setshiftsforemployee(e.target.value)} id="outlined-basic" label="מספר ימי חופש לעובד" variant="outlined" className='textField ml-5' />
         <br />
-        <TextField onChange={(e) => setSettingName(e.target.value)} id="outlined-basic" label="סוג הגדרה" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setmissingemployeesinday(e.target.value)} id="outlined-basic" label="מספר משמרות לעובד" variant="outlined" className='textField ml-5' />
         <br />
-        <TextField onChange={(e) => setSettingValueInt(e.target.value)} id="outlined-basic" label="ערך מספרי" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setmissingemployeesinShift(e.target.value)} id="outlined-basic" label="מספר עובדים חסרים במשמרת" variant="outlined" className='textField ml-5' />
         <br />
-        <TextField onChange={(e) => setSettingValueString(e.target.value)} id="outlined-basic" label="ערך מחזורתי" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setemployeesnum(e.target.value)} id="outlined-basic" label="מספר עובדים במוסד" variant="outlined" className='textField ml-5' />
         <br />
-        <TextField onChange={(e) => setSettingValueDate(e.target.value)} id="outlined-basic" label="תאריך " variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setchangeshifts(e.target.value)} id="outlined-basic" label="יום בחודש לשינוי משמרות" variant="outlined" className='textField ml-5' />
         <br />
         <Button className='ml-2' variant="contained" color="primary" onClick={() => update()}>
           אישור
