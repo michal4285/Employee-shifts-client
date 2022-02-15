@@ -66,7 +66,7 @@ function Details(props) {
         };
 
         fetch(`${API.LOGIN_URL}Employee/Update`, requestOptions)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
                 console.log(result)
                 debugger;
@@ -78,10 +78,12 @@ function Details(props) {
     }
     const Validate = () => {
         let flage = true
-
         if (email === "in correct") {
             setemailMessage("אימייל לא קיים במערכת")
         }
+        // if (email === "in correct") {
+        //     setemailMessage("אימייל לא קיים במערכת")
+        // 
         if (newPassword != confirmPassword) {
             setnewpasswordMessage("אימות נכשל")
         }

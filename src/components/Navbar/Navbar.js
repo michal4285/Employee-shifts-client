@@ -55,7 +55,7 @@ function CenteredTabs(props) {
                     >
                         <Tab label="לוח משמרות" onClick={() => navigate('/Schedule')} />
                          <Tab label="פרטים אישיים" onClick={() => navigate('/Details')} />
-                        {employee.id !== 1 &&<Tab label="עריכת משמרות" onClick={() => navigate('/ScheduleEmployee')} />}
+                        {employee.id >1 &&<Tab label="עריכת משמרות" onClick={() => navigate('/ScheduleEmployee')} />}
                         {employee.id === 1 &&<Tab label="רשימת עובדים" onClick={() => navigate('/EmployeesList')} />}
                         {employee.id === 1 &&<Tab label="עובד חדש" onClick={() => navigate('/Register')} />}
                         <Tab label="הודעות" onClick={() => navigate('/BoxChat')} />

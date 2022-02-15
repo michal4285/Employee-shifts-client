@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import { setemployee } from '../../redux/actions/user'
 import API from '../../config/env/local'
 import image from './2.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,6 +50,7 @@ function SignUp(props) {
   const [emailMessage, setemailMessage] = useState()
   const [PasswordMessage, setPasswordMessage] = useState()
   const [PhoneMessage, setPhoneMessage] = useState()
+  const navigate=useNavigate()
 
 
   const signup = () => {
@@ -72,13 +74,15 @@ function SignUp(props) {
     };
 
     fetch(`${API.LOGIN_URL}employee/Post`, requestOptions)
-      .then(response => response.text())
+      .then(response => response.json())
       .then(result => {
         console.log(result)
         debugger;
+        navigate('/Schedule')
+        navigate('/Register')
         if (result.Data == null)
           alert("הכתובת מייל קיימת במערכת")
-        else props.dispatch(setemployee(result))
+         
       })
       .catch(error => console.log('error', error));
   }
@@ -116,7 +120,7 @@ function SignUp(props) {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="שם פרטי"
                   autoFocus
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -127,7 +131,7 @@ function SignUp(props) {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="שם משפחה"
                   name="lastName"
                   autoComplete="lname"
                   onChange={(e) => setLastName(e.target.value)}
@@ -139,7 +143,7 @@ function SignUp(props) {
                   required
                   fullWidth
                   id="adress"
-                  label="Address"
+                  label="כתובת"
                   name="adress"
                   autoComplete="adress"
                   onChange={(e) => setAddress(e.target.value)}
@@ -152,7 +156,7 @@ function SignUp(props) {
                   required
                   fullWidth
                   id="phone"
-                  label="Phone"
+                  label="טלפון"
                   name="phone"
                   autoComplete="phone"
                   onChange={(e) => setPhone(e.target.value)}
@@ -166,7 +170,7 @@ function SignUp(props) {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="כתובת מייל"
                   name="email"
                   autoComplete="email"
 
@@ -181,10 +185,10 @@ function SignUp(props) {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="סיסמא"
                   type="password"
                   id="password"
-                  autoComplete="סיסמא נוכחית"
+                 
                   onChange={(e) => setpassward(e.target.value)}
                 />
               </Grid>
@@ -197,7 +201,7 @@ function SignUp(props) {
               className={classes.submit}
               onClick={() => Validate()}
             >
-              Sign Up
+           אישור
             </Button>
           </form>
         </div>

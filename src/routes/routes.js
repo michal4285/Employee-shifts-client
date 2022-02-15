@@ -42,6 +42,17 @@ function Routess(props) {
                 <Route path="/Details" element={<Details />} />
                 <Route path="/Navbar" element={<Navbar />} />
                 <Route path="/" element={<Login />} />
+
+           {/* <Routes>
+                <Route path="/EmployeesList" element={<EmployeeList/>} />
+                <Route path="/Login" element={<Login/>} />
+                <Route path="/Register" element={<Register/>} />
+                <Route path="/Schedule" element={<ScheduleManager/>} />
+                <Route path="/ScheduleEmployee" element={<ScheduleEmployee/>} />
+                <Route path="/Details" element={<Details/>} />
+                <Route path="/Navbar" element={<Navbar/>} />
+                <Route path="/" element={<Login/>} /> */}
+
             </Routes>
         </div>
     );
