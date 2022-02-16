@@ -107,8 +107,8 @@ function Details(props) {
                 <form className={classes.root} noValidate autoComplete="off" >
                     {/* <TextField id="standard-basic" label="Standard" /> */}
                     {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
-                    <img style={{ height: '100px', width: '100px', marginRight: '90%'}} src={image} />
-                    <div className="ml-20" style={{ marginLeft: "40%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
+                    <img style={{ height: '150px', width: '150px' }} src={image} />
+                    <div className="ml-20" style={{ marginLeft: "32%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
                     עריכת פרטים אישיים
                     </div>
                     <TextField

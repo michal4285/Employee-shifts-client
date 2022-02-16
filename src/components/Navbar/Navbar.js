@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setexit } from '../../redux/actions/settings';
-
+import image from './2.jpg';
 
 const useStyles = makeStyles({
     root: {
@@ -53,6 +53,7 @@ function CenteredTabs(props) {
                         textColor="primary"
                         centered
                     >
+                        
                         <Tab label="לוח משמרות" onClick={() => navigate('/Schedule')} />
                          <Tab label="פרטים אישיים" onClick={() => navigate('/Details')} />
                         {employee.id >1 &&<Tab label="עריכת משמרות" onClick={() => navigate('/ScheduleEmployee')} />}
@@ -61,6 +62,7 @@ function CenteredTabs(props) {
                         <Tab label="הודעות" onClick={() => navigate('/BoxChat')} />
                         {employee.id === 1 &&<Tab label="הגדרות מערכת" onClick={() => navigate('/Setting')} />}
                         <Tab label="יציאה" onClick={() => { nevigatelogin() }} />
+                        <img style={{height:'50px',width:'5%'}} src={image} />
                     </Tabs>
                 </Paper>
             }

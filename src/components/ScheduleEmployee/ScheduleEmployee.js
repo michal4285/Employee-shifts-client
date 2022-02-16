@@ -8,6 +8,7 @@ function ScheduleEmployee(props) {
     const [color, setcolor] = useState(['white','white','white','white','white','white','white'])
     const [shifts, setshifts] = useState([,])
 
+    let  listWhite=['white','white','white','white','white','white','white']
     let listColor=color
 
     useEffect(() => {
@@ -26,13 +27,22 @@ function ScheduleEmployee(props) {
  
        const checkFreeDay=(id)=>{
         debugger
-         if(color[id]==='red')
+         if(color[id]==='rgb(182, 77, 112)')
             listColor[id]='white'
-         else listColor[id]='red'
+         else {listColor=listWhite
+         listColor[id]='rgb(182, 77, 112)'}
          setcolor([...listColor])
        }
 
-       
+       const checkFreeShift=(id)=>{
+        debugger
+         if(color[id]==='rgb(182, 77, 112)')
+            listColor[id]='white'
+         else {listColor=listWhite
+         listColor[id]='rgb(182, 77, 112)'}
+         setcolor([...listColor])
+       }
+
 
     return (
     <>

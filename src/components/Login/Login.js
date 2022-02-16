@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import API from '../../config/env/local'
 import image from './2.jpg';
+import image1 from './1.jpg';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -111,8 +112,9 @@ function SignIn(props) {
             onClick={() => Signin()}
           >
             התחברות
-          </Button>         
+          </Button>   
         </form>
+        <img style={{height:'150px',width:'400%'}} src={image1} />
       </div>
 
     </Container>

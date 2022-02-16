@@ -9,6 +9,8 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import API from '../../config/env/local';
 import image from './2.jpg';
+import image3 from './3.jpg';
+import image4 from './4.jpg';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -54,8 +56,10 @@ function AlignItemsList(props) {
 
   return (
   <>
+  <img style={{ height: '2650px', width: '300px',float:'right',marginTop:'0' }} src={image3} />
+  <img style={{ height: '2650px', width: '300px',float:'left',marginTop:'0' }} src={image4} />
     <List sx={{margin:"35%", marginTop: '100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-    <img style={{ height: '100px', width: '100px', marginRight: '90%'}} src={image} />
+    <img style={{ height: '100px', width: '100px',marginLeft:'50%'}} src={image} />
       {lists.map((item, index) => (<div  style={{cursor:'pointer'}} id='userInList' key={index}  onClick={()=>handleClickOpenEmployee(index)}>
         <ListItem alignItems="flex-start" style={{width:"100%",heght:"100%"}}>
           <ListItemText sx={{ textAlign: "center" }}
@@ -104,18 +108,18 @@ function AlignItemsList(props) {
       {lists[clickUserId].employeeFirstName} {lists[clickUserId].employeeLastName}
         </DialogTitle>
         <DialogContent style={{backgroundColor:"lightblue"}}>
-          <DialogContentText style={{color:"blue"}}> 
+          <DialogContentText style={{color:"rgb(182, 77, 112)"}}> 
       {lists[clickUserId].employeePhone}
           </DialogContentText>
-          <DialogContentText style={{color:"blue"}}> 
+          <DialogContentText style={{color:"rgb(182, 77, 112)"}}> 
       {lists[clickUserId].employeeAddress}
           </DialogContentText>
-          <DialogContentText style={{color:"blue"}}> 
+          <DialogContentText style={{color:"rgb(182, 77, 112)"}}> 
        {lists[clickUserId].employeeEmail} 
           </DialogContentText>
         </DialogContent>
         <DialogActions style={{backgroundColor:"lightblue"}}>
-          <Button onClick={handleCloseEmployee} autoFocus style={{backgroundColor:"blue",color:"lightblue"}}>
+          <Button onClick={handleCloseEmployee} autoFocus style={{backgroundColor:"rgb(182, 77, 112)",color:"lightblue"}}>
             סגירה
           </Button>
         </DialogActions>
