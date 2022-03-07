@@ -59,7 +59,7 @@ function CenteredTabs(props) {
                         {employee.id >1 &&<Tab label="עריכת משמרות" onClick={() => navigate('/ScheduleEmployee')} />}
                         {employee.id === 1 &&<Tab label="רשימת עובדים" onClick={() => navigate('/EmployeesList')} />}
                         {employee.id === 1 &&<Tab label="עובד חדש" onClick={() => navigate('/Register')} />}
-                        <Tab label="הודעות" onClick={() => navigate('/BoxChat')} />
+                        {/* <Tab label="הודעות" onClick={() => navigate('/BoxChat')} /> */}
                         {employee.id === 1 &&<Tab label="הגדרות מערכת" onClick={() => navigate('/Setting')} />}
                         <Tab label="יציאה" onClick={() => { nevigatelogin() }} />
                         <img style={{height:'50px',width:'5%'}} src={image} />

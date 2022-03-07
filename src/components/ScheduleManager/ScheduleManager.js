@@ -7,8 +7,8 @@ import FullCalendarApp from './Calendar';
 
 export default function FullCalendar() {
   return (
-    <div className="App">
-      <FullCalendarApp/>
+    <div className="App" style={{}}>
+      <FullCalendarApp />
     </div>
   );
 }

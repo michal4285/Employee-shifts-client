@@ -19,12 +19,16 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-
-
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import image5 from './5.jpg';
+import image6 from './6.jpg';
+import image7 from './7.jpg';
 
 function AlignItemsList(props) {
   const [lists, setlists] = useState([,])
   const [open, setOpen] = useState(false);
+  const [alert,setalert]=useState(false)
   const [clickUserId, seclickUserId] = useState();
 
   const theme = useTheme();
@@ -32,16 +36,16 @@ function AlignItemsList(props) {
   
 
   useEffect(() => {
+    setalert(false)
     fetch(`${API.LOGIN_URL}employee/GetAll`, {
       method: 'GET',
-      // body: JSON.stringify({})
     }).then(res => res.json()).then(data => {
          debugger;
          if (data.Data != null) 
           setlists(data.Data)
-         else alert("אין עובדים במערכת")
-      }
-      ).catch(err => console.log(err.message))
+         else setalert(true)
+      }      
+      ).catch(err =>setalert(true))
   },[])
 
 
@@ -56,6 +60,9 @@ function AlignItemsList(props) {
 
   return (
   <>
+   {alert===true&&<Stack sx={{ width: '100%' }} spacing={2}>
+      <Alert severity="error" dir="rtl">אין עובדים במערכת</Alert>
+    </Stack>}
   <img style={{ height: '2650px', width: '300px',float:'right',marginTop:'0' }} src={image3} />
   <img style={{ height: '2650px', width: '300px',float:'left',marginTop:'0' }} src={image4} />
     <List sx={{margin:"35%", marginTop: '100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -104,10 +111,12 @@ function AlignItemsList(props) {
         aria-labelledby="responsive-dialog-title"
         align='right'
       >
-        <DialogTitle id="responsive-dialog-title" style={{backgroundColor:"lightblue",color:"blue"}}>
+        <img style={{height:'100px',width:'400px'}} src={image7} />
+        {/* <div  style={{backgroundImage:`url(${image5})` ,backgroundSize:'500px' }}> */}
+        <DialogTitle id="responsive-dialog-title"  style={{backgroundSize:"10% 10%",color:"blue"} } >
       {lists[clickUserId].employeeFirstName} {lists[clickUserId].employeeLastName}
         </DialogTitle>
-        <DialogContent style={{backgroundColor:"lightblue"}}>
+        <DialogContent >
           <DialogContentText style={{color:"rgb(182, 77, 112)"}}> 
       {lists[clickUserId].employeePhone}
           </DialogContentText>
@@ -118,11 +127,13 @@ function AlignItemsList(props) {
        {lists[clickUserId].employeeEmail} 
           </DialogContentText>
         </DialogContent>
-        <DialogActions style={{backgroundColor:"lightblue"}}>
-          <Button onClick={handleCloseEmployee} autoFocus style={{backgroundColor:"rgb(182, 77, 112)",color:"lightblue"}}>
+        <DialogActions  >
+          <Button onClick={handleCloseEmployee} autoFocus style={{backgroundColor:"rgb(182, 77, 112)",color:"lightblue",margin:'15px'}}>
             סגירה
           </Button>
         </DialogActions>
+        <img style={{height:'100px',width:'400px'}} src={image6} />
+        {/* </div> */}
       </Dialog>}
       </>
   );

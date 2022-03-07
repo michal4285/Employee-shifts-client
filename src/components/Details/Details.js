@@ -7,6 +7,8 @@ import API from '../../config/env/local';
 import { connect } from 'react-redux';
 import { setemployee } from '../../redux/actions/user';
 import image from './2.jpg';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,6 +43,7 @@ function Details(props) {
     const [originalPasswordMessage, setoriginalPasswordMessage] = useState()
     const [emailMessage, setemailMessage] = useState()
     const [telMessage, settelMessage] = useState()
+    const [alert,setalert]=useState(false)
     useEffect(() => {
         // alert(firstName)
     }, [])
@@ -71,10 +74,10 @@ function Details(props) {
                 console.log(result)
                 debugger;
                 if (result.Data == null)
-                    alert("עדכון ניכשל")
+                    setalert(true)
                 else props.dispatch(setemployee(result))
             })
-            .catch(error => console.log('error', error));
+            .catch(error =>setalert(true));
     }
     const Validate = () => {
         let flage = true
@@ -104,30 +107,33 @@ function Details(props) {
 
     return (
             <div className="main mt-5">
+                 {alert==true&&<Stack sx={{ width: '100%' }} spacing={2}>
+                     <Alert severity="error" dir="rtl">עדכון נכשל</Alert>
+                  </Stack>}
                 <form className={classes.root} noValidate autoComplete="off" >
                     {/* <TextField id="standard-basic" label="Standard" /> */}
                     {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
                     <img style={{ height: '150px', width: '150px' }} src={image} />
-                    <div className="ml-20" style={{ marginLeft: "32%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
+                    <div className="ml-20" style={{ marginLeft: "33%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
                     עריכת פרטים אישיים
                     </div>
+                    <TextField onChange={(e) => setLastName(e.target.value)} defaultValue={employee.lastName} id="outlined-basic" label="שם משפחה" variant="outlined" className='textField ml-5' />
+                    
                     <TextField
                         onChange={(e) => setFirstName(e.target.value)} defaultValue={employee.firstname} id="outlined-basic" label="שם פרטי" variant="outlined" className='textField ml-5' />
-                    <br />
-                    <TextField onChange={(e) => setLastName(e.target.value)} defaultValue={employee.lastName} id="outlined-basic" label="שם משפחה" variant="outlined" className='textField ml-5' />
-                    <br />
+                   <br />
                     <TextField onChange={(e) => setAddress(e.target.value)} defaultValue={employee.address} id="outlined-basic" label="כתובת" variant="outlined" className='textField ml-5' />
-                    <br />
+                   
                     <TextField onChange={(e) => setTel(e.target.value)} defaultValue={employee.phone} id="outlined-basic" label="טלפון" variant="outlined" className='textField ml-5' />
                     <p style={{ color: "red" }}>{telMessage}</p>
                     <TextField   id="outlined-basic" defaultValue={employee.email} disabled label="אימייל" variant="outlined" className='textField ml-5' />
                     <p style={{ color: "red", marginLeft: "44%" }}>{emailMessage}</p>
                     <TextField onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct"); }} id="outlined-basic" label="סיסמתך המקורית" variant="outlined" className='textField ml-5' />
                     <p style={{ color: "red", marginLeft: "44%" }}>{originalPasswordMessage}</p>
-                    <TextField onChange={(e) => setNewPassword(e.target.value)} id="outlined-basic" label="סיסמא חדשה" variant="outlined" className=' ml-5' />
-                    <br/>
-                    <TextField onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic" label="אימות סיסמא" variant="outlined" className=' ml-5' />
-                    <p style={{ color: "red", marginLeft: "44%"  }}>{newpasswordMessage}</p>
+                    <TextField onChange={(e) => setNewPassword(e.target.value)} id="outlined-basic"  label="סיסמא חדשה" variant="outlined" className=' ml-5' />
+                     
+                    <TextField onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic"  label="אימות סיסמא" variant="outlined" className=' ml-5' />
+                      <p style={{ color: "red", marginLeft: "44%"  }}>{newpasswordMessage}</p>
                     <br />
                     <Button className='ml-5' variant="contained" color="primary" onClick={() => Validate()}>
                         אישור

@@ -7,7 +7,9 @@ import API from '../../config/env/local';
 import { connect } from 'react-redux';
 import { setSetting } from '../../redux/actions/settingShifts';
 import image from './2.jpg';
-
+import { useTheme } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +37,7 @@ function Setting(props) {
   const [missingemployeesinShift, setmissingemployeesinShift] = useState()
   const [employeesnum, setemployeesnum] = useState()
   const [changeshifts, setchangeshifts] = useState()
-
+  const [alert,setalert]=useState(false)
   const[settings,setSettings]=useState([,])
 
   useEffect(() => {
@@ -53,7 +55,6 @@ function Setting(props) {
         //  props.dispatch(setdayofchangeshifts(result.Data[5].settingValueInt))
          setSettings(result.Data)
         // }
-         else alert("אין עובדים במערכת")
       }
       ).catch(err => console.log(err.message))
   }, [])
@@ -85,7 +86,7 @@ function Setting(props) {
         console.log(result)
         debugger;
         if (result.Data == null)
-          alert("עדכון ניכשל")
+          setalert(true)
         // else {
         //   props.dispatch(setnumfreedaysforeployee(result[0].settingValueInt))
         //   props.dispatch(setnumshiftsforemployee(result[1].settingValueInt))
@@ -100,21 +101,24 @@ function Setting(props) {
 
   return (
     <div className="main mt-5">
+       {alert===true&&<Stack sx={{ width: '100%' }} spacing={2}>
+      <Alert severity="error" dir="rtl">עדכון ניכשל</Alert>
+    </Stack>}
       <form className={classes.root} noValidate autoComplete="off" >
         {/* <TextField id="standard-basic" label="Standard" /> */}        {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
-        <img style={{ height: '100px', width: '100px', marginRight: '90%' }} src={image} />
-        <div className="ml-20" style={{ marginLeft: "40%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
+        <img style={{ height: '100px', width: '100px', marginRight: '5%' }} src={image} />
+        <div className="ml-20" style={{ marginLeft: "30%", color: "blue", fontSize: "200%", fontFamily: "Cursive" }}>
           עריכת הגדרות
         </div>
-        <TextField dir="rtl" onChange={(e) => setshiftsforemployee(e.target.value)} id="outlined-basic" label="מספר ימי חופש לעובד" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setshiftsforemployee(e.target.value)} id="outlined-basic" label="מספר ימי חופש לעובד" variant="outlined" className='textField ml-5' defaultValue='7'/>
         <br />
-        <TextField dir="rtl" onChange={(e) => setmissingemployeesinday(e.target.value)} id="outlined-basic" label="מספר משמרות לעובד" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setmissingemployeesinday(e.target.value)} id="outlined-basic" label="מספר משמרות לעובד" variant="outlined" className='textField ml-5' defaultValue='5'/>
         <br />
-        <TextField dir="rtl" onChange={(e) => setmissingemployeesinShift(e.target.value)} id="outlined-basic" label="מספר עובדים חסרים במשמרת" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setmissingemployeesinShift(e.target.value)} id="outlined-basic" label="מספר עובדים חסרים במשמרת" variant="outlined" className='textField ml-5' defaultValue='6'/>
         <br />
-        <TextField dir="rtl" onChange={(e) => setemployeesnum(e.target.value)} id="outlined-basic" label="מספר עובדים במוסד" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setemployeesnum(e.target.value)} id="outlined-basic" label="מספר עובדים במוסד" variant="outlined" className='textField ml-5' defaultValue='4' />
         <br />
-        <TextField dir="rtl" onChange={(e) => setchangeshifts(e.target.value)} id="outlined-basic" label="יום בחודש לשינוי משמרות" variant="outlined" className='textField ml-5' />
+        <TextField dir="rtl" onChange={(e) => setchangeshifts(e.target.value)} id="outlined-basic" label="יום בחודש לשינוי משמרות" variant="outlined" className='textField ml-5' defaultValue='5' />
         <br />
         <Button className='ml-2' variant="contained" color="primary" onClick={() => update()}>
           אישור

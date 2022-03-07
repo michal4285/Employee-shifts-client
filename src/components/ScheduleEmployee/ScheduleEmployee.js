@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './ScheduleEmployee.css';
 import { connect } from 'react-redux';
 import API from '../../config/env/local'
-
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 function ScheduleEmployee(props) {
     const [color, setcolor] = useState(['white','white','white','white','white','white','white'])
@@ -47,6 +48,13 @@ function ScheduleEmployee(props) {
     return (
     <>
     <div className="shifts">
+    <Button
+             style={{width:'50px', height:'50px',  margin:'30px',padding:'50px'}}
+            variant="contained"
+            color="primary"
+          >
+            אישור
+          </Button> 
       <table>
         <tr>
           {/* <th>{shifts[0]}</th>
@@ -59,48 +67,49 @@ function ScheduleEmployee(props) {
         </tr>
         <tr style={{backgroundColor:color[0]}}>
           <td id='0' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>א</td>
-          <td>8:00 - 16:00</td>
-          <td>16:00 - 12:00</td>
-          <td>12:00 - 8:00</td>
+          <td  style={{cursor:'pointer',backgroundColor:'rgb(204, 149, 182)'}}>8:00 - 16:00</td>
+          <td  style={{cursor:'pointer'}}>16:00 - 12:00</td>
+          <td  style={{cursor:'pointer',backgroundColor:'rgb(204, 149, 182)'}}>12:00 - 8:00</td>
         </tr>
         <tr style={{backgroundColor:color[1]}}>
         <td id='1' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ב</td>
-          <td>8:00 - 16:00</td>
-          <td>16:00 - 12:00</td>
-          <td>12:00 - 8:00</td>
+          <td  style={{cursor:'pointer'}}>8:00 - 16:00</td>
+          <td  style={{cursor:'pointer',backgroundColor:'rgb(204, 149, 182)'}}>16:00 - 12:00</td>
+          <td  style={{cursor:'pointer'}}>12:00 - 8:00</td>
         </tr>
         <tr style={{backgroundColor:color[2]}}>
         <td id='2'onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ג</td>
-          <td>8:00 - 16:00</td>
-          <td>16:00 - 12:00</td>
-          <td>12:00 - 8:00</td>
+          <td  style={{cursor:'pointer',backgroundColor:'rgb(204, 149, 182)'}}>8:00 - 16:00</td>
+          <td  style={{cursor:'pointer'}}>16:00 - 12:00</td>
+          <td  style={{cursor:'pointer'}}>12:00 - 8:00</td>
         </tr>
         <tr style={{backgroundColor:color[3]}}>
         <td id='3' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ד</td>
-          <td>8:00 - 16:00</td>
-          <td>16:00 - 12:00</td>
-          <td>12:00 - 8:00</td>
+          <td  style={{cursor:'pointer'}}>8:00 - 16:00</td>
+          <td  style={{cursor:'pointer'}}>16:00 - 12:00</td>
+          <td  style={{cursor:'pointer'}}>12:00 - 8:00</td>
         </tr>
         <tr style={{backgroundColor:color[4]}}>
         <td id='4' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ה</td>
-          <td>8:00 - 16:00</td>
-          <td>16:00 - 12:00</td>
-          <td>12:00 - 8:00</td>
+          <td  style={{cursor:'pointer'}}>8:00 - 16:00</td>
+          <td  style={{cursor:'pointer'}}>16:00 - 12:00</td>
+          <td  style={{cursor:'pointer',backgroundColor:'rgb(204, 149, 182)'}}>12:00 - 8:00</td>
         </tr>
         <tr style={{backgroundColor:color[5]}}>
         <td id='5' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ו</td>
-          <td>8:00 - 16:00</td>
-          <td>16:00 - 12:00</td>
-          <td>12:00 - 8:00</td>
+          <td  style={{cursor:'pointer'}}>8:00 - 16:00</td>
+          <td  style={{cursor:'pointer',backgroundColor:'rgb(204, 149, 182)'}}>16:00 - 12:00</td>
+          <td  style={{cursor:'pointer'}}>12:00 - 8:00</td>
         </tr>
         <tr style={{backgroundColor:color[6]}}>
         <td id='6' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ז</td>
-          <td>8:00 - 16:00</td>
-          <td>16:00 - 12:00</td>
-          <td>12:00 - 8:00</td>
+          <td  style={{cursor:'pointer',backgroundColor:'rgb(204, 149, 182)'}}>8:00 - 16:00</td>
+          <td  style={{cursor:'pointer'}}>16:00 - 12:00</td>
+          <td  style={{cursor:'pointer'}}>12:00 - 8:00</td>
         </tr>
       </table>
     </div>
+    
         </>
     );
 }

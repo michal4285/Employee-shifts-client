@@ -18,6 +18,9 @@ import { setemployee } from '../../redux/actions/user'
 import API from '../../config/env/local'
 import image from './2.jpg';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,6 +53,7 @@ function SignUp(props) {
   const [emailMessage, setemailMessage] = useState()
   const [PasswordMessage, setPasswordMessage] = useState()
   const [PhoneMessage, setPhoneMessage] = useState()
+  const [alert,setalert]=useState(false)
   const navigate=useNavigate()
 
 
@@ -78,13 +82,14 @@ function SignUp(props) {
       .then(result => {
         console.log(result)
         debugger;
-        navigate('/Schedule')
-        navigate('/Register')
         if (result.Data == null)
-          alert("הכתובת מייל קיימת במערכת")
-         
+        setalert(true)   
+         else{ 
+          navigate('/Schedule')
+          navigate('/Register')}
+   
       })
-      .catch(error => console.log('error', error));
+      .catch(error => setalert(true));
   }
   const Validate = () => {
     let flage = true
@@ -106,12 +111,27 @@ function SignUp(props) {
 
   return (
     <>
+     {alert===true&&<Stack sx={{ width: '100%' }} spacing={2}>
+      <Alert severity="error" dir="rtl">הכתובת מייל קיימת במערכת</Alert>
+    </Stack>}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
         <img style={{height:'100px',width:'100px'}} src={image} />
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="שם משפחה"
+                  name="lastName"
+                  autoComplete="lname"
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="fname"
@@ -123,18 +143,6 @@ function SignUp(props) {
                   label="שם פרטי"
                   autoFocus
                   onChange={(e) => setFirstName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="שם משפחה"
-                  name="lastName"
-                  autoComplete="lname"
-                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -149,7 +157,6 @@ function SignUp(props) {
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </Grid>
-
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"

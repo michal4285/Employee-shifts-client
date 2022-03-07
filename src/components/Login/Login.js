@@ -20,6 +20,8 @@ import './Login.css';
 import API from '../../config/env/local'
 import image from './2.jpg';
 import image1 from './1.jpg';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,11 +48,12 @@ function SignIn(props) {
   const [password, setpassward] = useState()
   const [email, setemail] = useState()
   const navigate=useNavigate()
+  const [alert,setalert]=useState(false)
 
   const Signin = () => {
+    setalert(false)
     fetch(`${API.LOGIN_URL}employee/Login?email=${email}&password=${password}`, {
       method: 'GET',
-      // body: JSON.stringify({})
     })
       .then(res => res.json()).then(data => {
         debugger;
@@ -61,13 +64,16 @@ function SignIn(props) {
           props.dispatch(setexit(false))
           navigate('/Schedule')
         }
-        else alert("משתמש לא קיים במערכת")
+        else setalert(true)
       }
-      ).catch(err => console.log(err.message))
+      ).catch(err => setalert(true))
   }
 
   return (
     <Container component="main" maxWidth="xs">
+       {alert===true&&<Stack sx={{ width: '100%' }} spacing={2}>
+      <Alert severity="error" dir="rtl">סיסמא או מייל לא נכונים</Alert>
+    </Stack>}
       <CssBaseline />
       <div className={classes.paper}>         
         <img style={{height:'100px',width:'100px'}} src={image} />
