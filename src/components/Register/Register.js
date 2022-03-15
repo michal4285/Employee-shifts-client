@@ -92,6 +92,9 @@ function SignUp(props) {
       .catch(error => setalert(true));
   }
   const Validate = () => {
+    setemailMessage('')
+    setPasswordMessage('')
+    setPhoneMessage('')
     let flage = true
     if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
       flage = false
@@ -111,15 +114,15 @@ function SignUp(props) {
 
   return (
     <>
-     {alert===true&&<Stack sx={{ width: '100%' }} spacing={2}>
+     {alert===true&&<Stack sx={{ width: '100%', margin:"10px"}} spacing={2}>
       <Alert severity="error" dir="rtl">הכתובת מייל קיימת במערכת</Alert>
     </Stack>}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-        <img style={{height:'100px',width:'100px'}} src={image} />
+        <img style={{height:'90px',width:'90px',marginTop:'2px'}} src={image} />
           <form className={classes.form} noValidate>
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
             <Grid item xs={12} sm={6}>
                 <TextField
                   variant="outlined"

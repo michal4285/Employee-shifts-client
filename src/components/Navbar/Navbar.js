@@ -40,6 +40,8 @@ function CenteredTabs(props) {
         let x = settings.exit
         debugger
         navigate('/Login')
+        window.location.href = '/Login'
+      
     };
 
     return (
