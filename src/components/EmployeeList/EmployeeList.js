@@ -63,8 +63,8 @@ function AlignItemsList(props) {
    {alert===true&&<Stack sx={{ width: '100%' }} spacing={2}>
       <Alert severity="error" dir="rtl">אין עובדים במערכת</Alert>
     </Stack>}
-  <img style={{ height: '2650px', width: '300px',float:'right',marginTop:'0' }} src={image3} />
-  <img style={{ height: '2650px', width: '300px',float:'left',marginTop:'0' }} src={image4} />
+  <img style={{ height: '3000px', width: '300px',float:'right',marginTop:'0' }} src={image3} />
+  <img style={{ height: '3000px', width: '300px',float:'left',marginTop:'0' }} src={image4} />
     <List sx={{margin:"35%", marginTop: '100px', width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
     <img style={{ height: '100px', width: '100px',marginLeft:'50%'}} src={image} />
       {lists.map((item, index) => (<div  style={{cursor:'pointer'}} id='userInList' key={index}  onClick={()=>handleClickOpenEmployee(index)}>

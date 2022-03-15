@@ -29,7 +29,7 @@ import image7 from './7.jpg';
 
 function mapStateToProps(state) {
   return {
-      employee: state.user,
+    employee: state.user,
 
   };
 }
@@ -37,38 +37,61 @@ function mapStateToProps(state) {
 
 function FullCalendarApp(props) {
   const [open, setOpen] = useState(false);
-    const { employee } = props
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const [clickUser,setclickUser]=useState({employeeFirstName:"michal",employeeLastName:"prober",employeeAddress:"chazon hish",employeePhone:"0533114285",employeeEmail:"michalprober@gmail.com"})
-    const [TimeShift,setTimeShift]=useState([])
-    const [alert,setalert]=useState(false)
+  const { employee } = props
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const [clickUser, setclickUser] = useState({ employeeFirstName: "michal", employeeLastName: "prober", employeeAddress: "chazon hish", employeePhone: "0533114285", employeeEmail: "michalprober@gmail.com" })
+  const [TimeShift, setTimeShift] = useState([])
+  const [alert, setalert] = useState(false)
+  const [events, setevents] = useState([{}, {}])
 
-
-    const handleClickOpenEmployee = (start,id) => {
-      fetch(`${API.LOGIN_URL}employee/GetEmployeeId?id=${id}`, {
-        method: 'GET',
-        // body: JSON.stringify({})
-      })
-        .then(res => res.json()).then(data => {
-          debugger;
-          console.log(data)
-          if (data.Data != null) {
-            let employee = data.Data
-            setclickUser(employee)
-            setTimeShift(start)
-            setOpen(true);
-          }
-          else setalert(true)
+  useEffect(() => {
+    document.getElementsByClassName('fc-today-button fc-button fc-button-primary').value="היום"
+    debugger
+    if (employee.id === 1) {
+      fetch(`${API.LOGIN_URL}EmployeeMonthShifts/GetShifts`)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        debugger;
+        if (result.Data !== null) { }
+        setevents(result.Data)
+      }).catch(error => console.log(error));
+    }
+    else {
+      fetch(`${API.LOGIN_URL}EmployeeMonthShifts/UserShifts?employeeId=${employee.id}`)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        debugger;
+        if (result.Data !== null) { }
+        setevents(result.Data)
+      }).catch(error => console.log(error));
+    }
+  }, [])
+  const handleClickOpenEmployee = (start, id) => {
+    fetch(`${API.LOGIN_URL}employee/GetEmployeeId?id=${id}`, {
+      method: 'GET',
+      // body: JSON.stringify({})
+    })
+      .then(res => res.json()).then(data => {
+        debugger;
+        if (data.Data != null) {
+          let employee = data.Data
+          setclickUser(employee)
+          setTimeShift(start)
+          setOpen(true);
         }
-        ).catch(err =>setalert(true))
-    };
-  
-    const handleCloseEmployee = () => {
-      setOpen(false);
-    };
- 
-  const events = [
+        else setalert(true)
+      }
+      ).catch(err => setalert(true))
+  };
+
+  const handleCloseEmployee = () => {
+    setOpen(false);
+  };
+
+  const events1 = [
     {
       id: 1,
       title: 'shoshana',
@@ -196,11 +219,11 @@ function FullCalendarApp(props) {
     },
     {
       id: 6,
-      title: 'levana',  
+      title: 'levana',
       start: '2022-02-23T16:00:00',
       end: '2022-02-23T23:59:60',
       color: "pink",
-      cursor:'pointer'
+      cursor: 'pointer'
     },
     {
       id: 3,
@@ -237,11 +260,11 @@ function FullCalendarApp(props) {
     },
     {
       id: 6,
-      title: 'levana',  
+      title: 'levana',
       start: '2022-02-24T16:00:00',
       end: '2022-02-23T24:59:60',
       color: "pink",
-      cursor:'pointer'
+      cursor: 'pointer'
     },
     {
       id: 3,
@@ -278,11 +301,11 @@ function FullCalendarApp(props) {
     },
     {
       id: 6,
-      title: 'levana',  
+      title: 'levana',
       start: '2022-02-25T16:00:00',
       end: '2022-02-25T23:59:60',
       color: "pink",
-      cursor:'pointer'
+      cursor: 'pointer'
     },
     {
       id: 3,
@@ -319,11 +342,11 @@ function FullCalendarApp(props) {
     },
     {
       id: 6,
-      title: 'levana',  
+      title: 'levana',
       start: '2022-02-26T16:00:00',
       end: '2022-02-26T23:59:60',
       color: "pink",
-      cursor:'pointer'
+      cursor: 'pointer'
     },
     {
       id: 3,
@@ -335,7 +358,7 @@ function FullCalendarApp(props) {
 
     // { id: 3, title: 'event 3', start: '2021-08-27', end: '2021-08-27' },
   ];
-  const eventemp=[
+  const eventemp = [
     {
       id: 2,
       title: 'רבקי',
@@ -343,24 +366,24 @@ function FullCalendarApp(props) {
       end: '2022-02-22T16:00:00',
     },
     {
-      id:2,
+      id: 2,
       title: 'רבקי',
       start: '2022-02-23T00:00:00',
       end: '2022-02-23T07:00:00',
       color: "green"
-    },  {
+    }, {
       id: 2,
       title: 'רבקי',
       start: '2022-02-24T00:00:00',
       end: '2022-02-24T07:00:00',
       color: "green"
-    },  {
+    }, {
       id: 2,
       title: 'רבקי',
       start: '2022-02-25T00:00:00',
       end: '2022-02-25T07:00:00',
       color: "pink"
-    },  {
+    }, {
       id: 2,
       title: 'רבקי',
       start: '2022-02-26T00:00:00',
@@ -374,71 +397,81 @@ function FullCalendarApp(props) {
       end: '2022-02-21T07:00:00',
       color: "pink"
     }
-    
+
   ]
   return (
     <div className="App">
-      
-      {alert===true&&<Stack sx={{ width: '100%' }} spacing={2}>
-      <Alert severity="error" dir="rtl">שגיאת מערכת</Alert>
-          </Stack>}
-      {employee.id===1&&<FullCalendar
+
+      {alert === true && <Stack sx={{ width: '100%' }} spacing={2}>
+        <Alert severity="error" dir="rtl">שגיאת מערכת</Alert>
+      </Stack>}
+      {/* {employee.id === 1 && <FullCalendar
         headerToolbar={{
           center: 'dayGridWeek,timeGridDay,listWeek',
         }}
         themeSystem='bootstrap'
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin,listPlugin ]}
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
         theme='bootstrap3'
         initialView="listDay"
         events={events}
         nowIndicator
-        eventClick={(e)=>handleClickOpenEmployee(e.el.fcSeg.eventRange.instance.range,e.el.fcSeg.eventRange.def.publicId)}
+        eventClick={(e) => handleClickOpenEmployee(e.el.fcSeg.eventRange.instance.range, e.el.fcSeg.eventRange.def.publicId)}
         eventMouseEnter={console.log('mm')}
         variant="outlined"
-      />}
-      
-     {employee.id!==1&&<FullCalendar
+      />} */}
+
+      {/* {employee.id !== 1 &&  */}
+      <FullCalendar
         headerToolbar={{
-          center: 'dayGridWeek,timeGridDay',
+          center: 'dayGridWeek,timeGridDay,listWeek',
         }}
+        buttonText={{
+          today:'היום',
+          month:'חודשי',
+          week:'שבועי',
+          day:'יומי',
+          list:'רשימה'
+        }}
+        
         themeSystem='bootstrap'
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin,listPlugin]}
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
         theme='bootstrap3'
         initialView="listWeek"
-        events={eventemp}
+        events={events}
         nowIndicator
-        eventClick={(e)=>handleClickOpenEmployee(e.el.fcSeg.eventRange.instance.range,e.el.fcSeg.eventRange.def.publicId)}
+        eventClick={(e) => handleClickOpenEmployee(e.el.fcSeg.eventRange.instance.range, e.el.fcSeg.eventRange.def.publicId)}
         eventMouseEnter={console.log('mm')}
         variant="outlined"
-      />}
-      <Dialog 
+      />
+    
+      <Dialog
         fullScreen={fullScreen}
         open={open}
         onClose={handleCloseEmployee}
         aria-labelledby="responsive-dialog-title"
         align='right'
       >
-        <img style={{height:'100px',width:'400px'}} src={image7} />
-        <DialogTitle id="responsive-dialog-title" style={{color:"blue"} } >
+        <img style={{ height: '100px', width: '400px' }} src={image7} />
+        <DialogTitle id="responsive-dialog-title" style={{ color: "blue" }} >
           {clickUser.employeeFirstName} {clickUser.employeeLastName}
         </DialogTitle>
         <DialogContent >
-          <DialogContentText style={{color:"rgb(182, 77, 112)"} } > 
+          <DialogContentText style={{ color: "rgb(182, 77, 112)" }} >
             {clickUser.employeePhone}
             <br />
             {clickUser.employeeEmail}
             <br />
-            :שעות משמרת <div style={{color:"rgb(182, 77, 112)"} } >{moment(moment(TimeShift.start, "h:mm a").diff(moment('02:00:00', "h:mm a"))).utc().format('h:mm a')} - {moment(moment(TimeShift.end, "h:mm a").diff(moment('02:00:00', "h:mm a"))).utc().format('h:mm a')}</div>
+            :שעות משמרת <div style={{ color: "rgb(182, 77, 112)" }} >{moment(moment(TimeShift.start, "h:mm a").diff(moment('02:00:00', "h:mm a"))).utc().format('h:mm a')} - {moment(moment(TimeShift.end, "h:mm a").diff(moment('02:00:00', "h:mm a"))).utc().format('h:mm a')}</div>
           </DialogContentText>
         </DialogContent>
         <DialogActions >
-          <Button onClick={handleCloseEmployee} autoFocus style={{backgroundColor:"rgb(182, 77, 112)",color:"lightblue",margin:'15px'}}>
+          <Button onClick={handleCloseEmployee} autoFocus style={{ backgroundColor: "rgb(182, 77, 112)", color: "lightblue", margin: '15px' }}>
             סגירה
           </Button>
         </DialogActions>
-        <img style={{height:'100px',width:'400px'}} src={image6} />
+        <img style={{ height: '100px', width: '400px' }} src={image6} />
       </Dialog>
     </div>
   );
- 
-}export default connect(mapStateToProps)(FullCalendarApp)
+
+} export default connect(mapStateToProps)(FullCalendarApp)
