@@ -432,7 +432,8 @@ function FullCalendarApp(props) {
           day:'יומי',
           list:'רשימה'
         }}
-        
+         
+        locale='heb'
         themeSystem='bootstrap'
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
         theme='bootstrap3'
