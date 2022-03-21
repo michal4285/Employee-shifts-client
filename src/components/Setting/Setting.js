@@ -37,6 +37,7 @@ function Setting(props) {
   const [missingemployeesinShift, setmissingemployeesinShift] = useState()
   const [employeesnum, setemployeesnum] = useState()
   const [changeshifts, setchangeshifts] = useState()
+  const [employeeNumInShift,setemployeeNumInShift]=useState()
   const [alert,setalert]=useState(false)
   const[settings,setSettings]=useState([,])
 
@@ -107,16 +108,20 @@ function Setting(props) {
       <form className={classes.root} noValidate autoComplete="off" >
         {/* <TextField id="standard-basic" label="Standard" /> */}        {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
         <img style={{ height: '90px', width: '90px', marginRight: '5%' }} src={image} />
-        <div className="ml-20" style={{ marginLeft: "35%", color: "blue", fontSize: "150%", fontFamily: "Cursive" }}>
+        <div className="ml-20" style={{ marginLeft: "38%", color: "blue", fontSize: "150%", fontFamily: "Cursive" }}>
           עריכת הגדרות
         </div>
-        <TextField size="small" dir="rtl" onChange={(e) => setshiftsforemployee(e.target.value)} id="outlined-basic" label="מספר ימי חופש לעובד" variant="outlined" className='textField ml-5' defaultValue='7'/>
+        <TextField size="small" dir="rtl" onChange={(e) => setfreedaysforeployee(e.target.value)} id="outlined-basic" label="מספר ימי חופש לעובד" variant="outlined" className='textField ml-5' defaultValue='1'/>
         <br />
-        <TextField size="small" dir="rtl" onChange={(e) => setmissingemployeesinday(e.target.value)} id="outlined-basic" label="מספר משמרות לעובד" variant="outlined" className='textField ml-5' defaultValue='5'/>
+        <TextField size="small" dir="rtl" onChange={(e) => setshiftsforemployee(e.target.value)} id="outlined-basic" label="מספר משמרות לעובד" variant="outlined" className='textField ml-5' defaultValue='1'/>
         <br />
-        <TextField size="small" dir="rtl" onChange={(e) => setmissingemployeesinShift(e.target.value)} id="outlined-basic" label="מספר עובדים חסרים במשמרת" variant="outlined" className='textField ml-5' defaultValue='6'/>
+        <TextField size="small" dir="rtl" onChange={(e) => setmissingemployeesinday(e.target.value)} id="outlined-basic" label="מספר עובדים חסרים ביום" variant="outlined" className='textField ml-5' defaultValue='5'/>
         <br />
-        <TextField size="small" dir="rtl" onChange={(e) => setemployeesnum(e.target.value)} id="outlined-basic" label="מספר עובדים במוסד" variant="outlined" className='textField ml-5' defaultValue='4' />
+        <TextField size="small" dir="rtl" onChange={(e) => setmissingemployeesinShift(e.target.value)} id="outlined-basic" label="מספר עובדים חסרים במשמרת" variant="outlined" className='textField ml-5' defaultValue='15'/>
+        <br />
+        <TextField size="small" dir="rtl" onChange={(e) => setemployeesnum(e.target.value)} id="outlined-basic" label="מספר עובדים במוסד" variant="outlined" className='textField ml-5' defaultValue='20' />
+        <br />
+        <TextField size="small" dir="rtl" onChange={(e) => setemployeeNumInShift(e.target.value)} id="outlined-basic" label="מספר עובדים במשמרת" variant="outlined" className='textField ml-5' defaultValue='5' />
         <br />
         <TextField size="small" dir="rtl" onChange={(e) => setchangeshifts(e.target.value)} id="outlined-basic" label="יום בחודש לשינוי משמרות" variant="outlined" className='textField ml-5' defaultValue='5' />
         <br />
