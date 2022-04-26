@@ -6,11 +6,11 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-
+ 
 
 function mapStateToProps(state) {
   return {
-    employee: state.user,
+      employee: state.user,
 
   };
 }
@@ -29,20 +29,20 @@ function ScheduleEmployee(props) {
     const [alertInfo,setalertInfo]=useState(false)
     const [alertErrorDay,setalertErrorDay]=useState(false)
 
-  const [shifts, setshifts] = useState([,])
-  const { employee } = props
+    const [shifts, setshifts] = useState([,])
+    const { employee } = props
 
-  let listWhite = ['', '', '', '', '', '', '']
-  let listColor = colorday
+    let  listWhite=['','','','','','','']
+    let listColor=colorday
 
-  let listWhiteShifts = ['', '', '']
-  let listColorShifts1 = colorShifts1
-  let listColorShifts2 = colorShifts2
-  let listColorShifts3 = colorShifts3
-  let listColorShifts4 = colorShifts4
-  let listColorShifts5 = colorShifts5
-  let listColorShifts6 = colorShifts6
-  let listColorShifts7 = colorShifts7
+    let  listWhiteShifts=['','','']
+    let  listColorShifts1=colorShifts1
+    let  listColorShifts2=colorShifts2
+    let  listColorShifts3=colorShifts3
+    let  listColorShifts4=colorShifts4
+    let  listColorShifts5=colorShifts5
+    let  listColorShifts6=colorShifts6
+    let  listColorShifts7=colorShifts7
 
 
 
@@ -128,10 +128,10 @@ function ScheduleEmployee(props) {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      "employeeInInstitutionId": employee.id,
-      "dayInWeek": Number(id) + 1,
-      "shiftId": 0,
-      "dateOfCreate": ''
+      "employeeInInstitutionId":employee.id,
+      "dayInWeek":Number(id)+1,
+      "shiftId":0,
+      "dateOfCreate":''
     });
 
     var requestOptions = {
@@ -151,36 +151,43 @@ function ScheduleEmployee(props) {
           // if(colorday[id]==='rgb(182, 77, 112)')
           // listColor[id]='white'
           // else {
-          if (id == 0) {
-            listColorShifts1 = listWhiteShifts
-            setcolorShifts1([...listColorShifts1])
-          }
-          else if (id == 1) {
-            listColorShifts2 = listWhiteShifts
-            setcolorShifts2([...listColorShifts2])
-          }
-          else if (id == 2) {
-            listColorShifts3 = listWhiteShifts
-            setcolorShifts3([...listColorShifts3])
-          }
-          if (id == 3) {
-            listColorShifts4 = listWhiteShifts
-            setcolorShifts4([...listColorShifts4])
-          }
-          if (id == 4) {
-            listColorShifts5 = listWhiteShifts
-            setcolorShifts5([...listColorShifts5])
-          }
-          if (id == 5) {
-            listColorShifts6 = listWhiteShifts
-            setcolorShifts6([...listColorShifts6])
-          }
-          if (id == 6) {
-            listColorShifts7 = listWhiteShifts
-            setcolorShifts7([...listColorShifts7])
-          }
-          listColor = listWhite
-          listColor[id] = 'rgb(182, 77, 112)'
+            if(id==0)
+            {
+              listColorShifts1=listWhiteShifts
+              setcolorShifts1([...listColorShifts1])
+            }
+           else if(id==1)
+            {
+              listColorShifts2=listWhiteShifts
+              setcolorShifts2([...listColorShifts2])
+            }
+           else if(id==2)
+            {
+              listColorShifts3=listWhiteShifts
+              setcolorShifts3([...listColorShifts3])
+            }
+            if(id==3)
+            {
+              listColorShifts4=listWhiteShifts
+              setcolorShifts4([...listColorShifts4])
+            }
+            if(id==4)
+            {
+              listColorShifts5=listWhiteShifts
+              setcolorShifts5([...listColorShifts5])
+            }
+            if(id==5)
+            {
+              listColorShifts6=listWhiteShifts
+              setcolorShifts6([...listColorShifts6])
+            }
+            if(id==6)
+            {
+              listColorShifts7=listWhiteShifts
+              setcolorShifts7([...listColorShifts7])
+            }
+          listColor=listWhite
+          listColor[id]='rgb(182, 77, 112)'
           setcolorday([...listColor])
         }
         else setalertErrorDay(true)
@@ -257,17 +264,23 @@ let count=0;
           listColorShifts6[result.Data[i].shiftId-1]='rgb(204, 149, 182)'
           setcolorShifts6([...listColorShifts6])
         }
-        else setalertError(true)
-      })
-      .catch(error => console.log(error));
-  }
+        else 
+        {  listColorShifts7=listWhiteShifts
+          listColorShifts7[result.Data[i].shiftId-1]='rgb(204, 149, 182)'
+          setcolorShifts7([...listColorShifts7])
+        }}
+      }}
+      else  setalertError(true)
+    })
+    .catch(error =>console.log(error));
+    }
 
-  const OK = () => {
-    setalertSuccess(true)
-    setalertInfo(false)
-    setalertError(false)
-  }
-  return (
+    const OK=()=>{
+      setalertSuccess(true) 
+      setalertInfo(false) 
+      setalertError(false)
+    }
+    return (
     <>
     <div className="shifts">
       
@@ -299,58 +312,58 @@ let count=0;
           {/* <th>{shifts[0]}</th>
           <th>{shifts[1]}</th>
           <th>{shifts[2]}</th> */}
-              <th>יום</th>
-              <th>בוקר</th>
-              <th>צהרים</th>
-              <th>לילה</th>
-            </tr>
-            <tr style={{ backgroundColor: colorday[0] }}>
-              <td id='0' onClick={(e) => checkFreeDay(e.target.id)} style={{ cursor: 'pointer' }}>א</td>
-              <td id='00' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts1[0] }}>8:00 - 16:00</td>
-              <td id='01' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts1[1] }}>16:00 - 12:00</td>
-              <td id='02' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts1[2] }}>12:00 - 8:00</td>
-            </tr>
-            <tr style={{ backgroundColor: colorday[1] }}>
-              <td id='1' onClick={(e) => checkFreeDay(e.target.id)} style={{ cursor: 'pointer' }}>ב</td>
-              <td id='10' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts2[0] }}>8:00 - 16:00</td>
-              <td id='11' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts2[1] }}>16:00 - 12:00</td>
-              <td id='12' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts2[2] }}>12:00 - 8:00</td>
-            </tr>
-            <tr style={{ backgroundColor: colorday[2] }}>
-              <td id='2' onClick={(e) => checkFreeDay(e.target.id)} style={{ cursor: 'pointer' }}>ג</td>
-              <td id='20' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts3[0] }}>8:00 - 16:00</td>
-              <td id='21' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts3[1] }}>16:00 - 12:00</td>
-              <td id='22' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts3[2] }}>12:00 - 8:00</td>
-            </tr>
-            <tr style={{ backgroundColor: colorday[3] }}>
-              <td id='3' onClick={(e) => checkFreeDay(e.target.id)} style={{ cursor: 'pointer' }}>ד</td>
-              <td id='30' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts4[0] }}>8:00 - 16:00</td>
-              <td id='31' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts4[1] }}>16:00 - 12:00</td>
-              <td id='32' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts4[2] }}>12:00 - 8:00</td>
-            </tr>
-            <tr style={{ backgroundColor: colorday[4] }}>
-              <td id='4' onClick={(e) => checkFreeDay(e.target.id)} style={{ cursor: 'pointer' }}>ה</td>
-              <td id='40' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts5[0] }}>8:00 - 16:00</td>
-              <td id='41' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts5[1] }}>16:00 - 12:00</td>
-              <td id='42' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts5[2] }}>12:00 - 8:00</td>
-            </tr>
-            <tr style={{ backgroundColor: colorday[5] }}>
-              <td id='5' onClick={(e) => checkFreeDay(e.target.id)} style={{ cursor: 'pointer' }}>ו</td>
-              <td id='50' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts6[0] }}>8:00 - 16:00</td>
-              <td id='51' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts6[1] }}>16:00 - 12:00</td>
-              <td id='52' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts6[2] }}>12:00 - 8:00</td>
-            </tr>
-            <tr style={{ backgroundColor: colorday[6] }}>
-              <td id='6' onClick={(e) => checkFreeDay(e.target.id)} style={{ cursor: 'pointer' }}>ז</td>
-              <td id='60' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts7[0] }}>8:00 - 16:00</td>
-              <td id='61' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts7[1] }}>16:00 - 12:00</td>
-              <td id='62' onClick={(e) => checkFreeShift(e.target.id)} style={{ cursor: 'pointer', backgroundColor: colorShifts7[2] }}>12:00 - 8:00</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-    </>
-  );
+          <th>יום</th>
+          <th>בוקר</th>
+          <th>צהרים</th>
+          <th>לילה</th>
+        </tr>
+        <tr style={{backgroundColor:colorday[0]}}>
+          <td id='0' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>א</td>
+          <td id='00' onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts1[0]}}>8:00 - 16:00</td>
+          <td id='01'onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts1[1]}}>16:00 - 12:00</td>
+          <td id='02' onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts1[2]}}>12:00 - 8:00</td>
+        </tr>
+        <tr style={{backgroundColor:colorday[1]}}>
+        <td id='1' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ב</td>
+          <td id='10' onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts2[0]}}>8:00 - 16:00</td>
+          <td id='11' onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts2[1]}}>16:00 - 12:00</td>
+          <td  id='12'onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts2[2]}}>12:00 - 8:00</td>
+        </tr>
+        <tr style={{backgroundColor:colorday[2]}}>
+        <td id='2'onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ג</td>
+          <td id='20'onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts3[0]}}>8:00 - 16:00</td>
+          <td id='21' onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts3[1]}}>16:00 - 12:00</td>
+          <td id='22' onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts3[2]}}>12:00 - 8:00</td>
+        </tr>
+        <tr style={{backgroundColor:colorday[3]}}>
+        <td id='3' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ד</td>
+          <td id='30'onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts4[0]}}>8:00 - 16:00</td>
+          <td id='31'onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts4[1]}}>16:00 - 12:00</td>
+          <td id='32' onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts4[2]}}>12:00 - 8:00</td>
+        </tr>
+        <tr style={{backgroundColor:colorday[4]}}>
+        <td id='4' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ה</td>
+          <td id='40'onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts5[0]}}>8:00 - 16:00</td>
+          <td id='41'onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts5[1]}}>16:00 - 12:00</td>
+          <td id='42'onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts5[2]}}>12:00 - 8:00</td>
+        </tr>
+        <tr style={{backgroundColor:colorday[5]}}>
+        <td id='5' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ו</td>
+          <td  id='50'onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts6[0]}}>8:00 - 16:00</td>
+          <td id='51' onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts6[1]}}>16:00 - 12:00</td>
+          <td id='52' onClick={(e)=>checkFreeShift(e.target.id)}style={{cursor:'pointer',backgroundColor:colorShifts6[2]}}>12:00 - 8:00</td>
+        </tr>
+        <tr style={{backgroundColor:colorday[6]}}>
+        <td id='6' onClick={(e)=>checkFreeDay(e.target.id)} style={{cursor:'pointer'}}>ז</td>
+          <td id='60' onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts7[0]}}>8:00 - 16:00</td>
+          <td id='61' onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts7[1]}}>16:00 - 12:00</td>
+          <td id='62' onClick={(e)=>checkFreeShift(e.target.id)} style={{cursor:'pointer',backgroundColor:colorShifts7[2]}}>12:00 - 8:00</td>
+        </tr>
+      </table>
+    </div>
+    </div>
+    
+   </>
+    );
 }
 export default connect(mapStateToProps)(ScheduleEmployee)
