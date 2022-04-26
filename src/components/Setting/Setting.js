@@ -111,7 +111,7 @@ function Setting(props) {
       <form className={classes.root} noValidate autoComplete="off" >
         {/* <TextField id="standard-basic" label="Standard" /> */}        {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
         <img style={{ height: '90px', width: '90px', marginRight: '5%' }} src={image} />
-        <div className="ml-20" style={{ marginLeft: "35%", color: "blue", fontSize: "150%", fontFamily: "Cursive" }}>
+        <div className="ml-20" style={{ marginLeft: "38%", color: "blue", fontSize: "150%", fontFamily: "Cursive" }}>
           עריכת הגדרות
         </div>
         {/* <TextField size="small" dir="rtl" onChange={(e) => setfreedaysforeployee(e.target.value)} id="outlined-basic" label="מספר ימי חופש לעובד" variant="outlined" className='textField ml-5' defaultValue='1'/> */}
