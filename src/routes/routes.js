@@ -28,7 +28,7 @@ function mapStateToProps(state) {
 
 function Routess(props) {
     useEffect(() => { }, [])
-    debugger;
+    
     let { employee, settings,settingShifts } = props;
     return (
         <div>

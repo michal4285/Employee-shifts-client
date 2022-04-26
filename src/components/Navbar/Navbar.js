@@ -27,7 +27,7 @@ function CenteredTabs(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
     let { settings,employee,setting} = props;
-    debugger;
+   
      
 
     const handleChange = (event, newValue) => {
@@ -35,10 +35,10 @@ function CenteredTabs(props) {
     };
 
     const nevigatelogin = () => {
-        debugger
+         
         props.dispatch(setexit(true))
         let x = settings.exit
-        debugger
+         
         navigate('/Login')
         window.location.href = '/Login'
       

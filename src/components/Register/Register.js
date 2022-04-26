@@ -81,7 +81,7 @@ function SignUp(props) {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        debugger;
+         
         if (result.Data == null)
         setalert(true)   
          else{ 

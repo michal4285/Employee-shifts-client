@@ -52,11 +52,16 @@ function SignIn(props) {
 
   const Signin = () => {
     setalert(false)
+    fetch(`${API.LOGIN_URL}Constraint/orderSchedule`, {
+      method: 'GET',
+    }).then(res => res.json()).then(data => {
+      }).catch(err => setalert(true))
+
     fetch(`${API.LOGIN_URL}employee/Login?email=${email}&password=${password}`, {
       method: 'GET',
     })
       .then(res => res.json()).then(data => {
-        debugger;
+        
         console.log(data)
         if (data.Data != null) {
           let employee = data.Data

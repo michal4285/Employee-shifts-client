@@ -29,7 +29,7 @@ function mapStateToProps(state) {
 
 function Setting(props) {
   const { settingShifts } = props
-  debugger;
+   
   const classes = useStyles()
   const [freedaysforeployee, setfreedaysforeployee] = useState()
   const [shiftsforemployee, setshiftsforemployee] = useState()
@@ -37,15 +37,17 @@ function Setting(props) {
   const [missingemployeesinShift, setmissingemployeesinShift] = useState()
   const [employeesnum, setemployeesnum] = useState()
   const [changeshifts, setchangeshifts] = useState()
+  const [employeeNumInShift,setemployeeNumInShift]=useState()
   const [alert,setalert]=useState(false)
   const[settings,setSettings]=useState([,])
+
 
   useEffect(() => {
     fetch(`${API.LOGIN_URL}settings/GetAll`, {
       method: 'GET',
       // body: JSON.stringify({})
     }).then(res => res.json()).then(result => {
-         debugger;
+         
          if (result.Data != null) 
         //  {props.dispatch(setnumfreedaysforeployee(result.Data[0].settingValueInt))
         //  props.dispatch(setnumshiftsforemployee(result.Data[1].settingValueInt))
@@ -60,8 +62,10 @@ function Setting(props) {
   }, [])
 
   const update = () => {
+    setalert(true)
+  }
 
-
+  const update1 = () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -84,7 +88,7 @@ function Setting(props) {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        debugger;
+         
         if (result.Data == null)
           setalert(true)
         // else {
@@ -102,7 +106,7 @@ function Setting(props) {
   return (
     <div className="main mt-5">
        {alert===true&&<Stack sx={{ width: '100%' }} spacing={2}>
-      <Alert severity="error" dir="rtl">עדכון ניכשל</Alert>
+      <Alert severity="success" dir="rtl">ההגדרות עודכנו בהצלחה</Alert>
     </Stack>}
       <form className={classes.root} noValidate autoComplete="off" >
         {/* <TextField id="standard-basic" label="Standard" /> */}        {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
@@ -110,13 +114,15 @@ function Setting(props) {
         <div className="ml-20" style={{ marginLeft: "35%", color: "blue", fontSize: "150%", fontFamily: "Cursive" }}>
           עריכת הגדרות
         </div>
-        <TextField size="small" dir="rtl" onChange={(e) => setshiftsforemployee(e.target.value)} id="outlined-basic" label="מספר ימי חופש לעובד" variant="outlined" className='textField ml-5' defaultValue='7'/>
+        {/* <TextField size="small" dir="rtl" onChange={(e) => setfreedaysforeployee(e.target.value)} id="outlined-basic" label="מספר ימי חופש לעובד" variant="outlined" className='textField ml-5' defaultValue='1'/> */}
+        {/* <br /> */}
+        {/* <TextField size="small" dir="rtl" onChange={(e) => setshiftsforemployee(e.target.value)} id="outlined-basic" label="מספר משמרות לעובד" variant="outlined" className='textField ml-5' defaultValue='1'/> */}
+        {/* <br /> */}
+        <TextField size="small" dir="rtl" onChange={(e) => setmissingemployeesinday(e.target.value)} id="outlined-basic" label="מספר עובדים חסרים ביום" variant="outlined" className='textField ml-5' defaultValue='5'/>
         <br />
-        <TextField size="small" dir="rtl" onChange={(e) => setmissingemployeesinday(e.target.value)} id="outlined-basic" label="מספר משמרות לעובד" variant="outlined" className='textField ml-5' defaultValue='5'/>
+        <TextField size="small" dir="rtl" onChange={(e) => setemployeeNumInShift(e.target.value)} id="outlined-basic" label="מספר עובדים במשמרת" variant="outlined" className='textField ml-5' defaultValue='5' />
         <br />
-        <TextField size="small" dir="rtl" onChange={(e) => setmissingemployeesinShift(e.target.value)} id="outlined-basic" label="מספר עובדים חסרים במשמרת" variant="outlined" className='textField ml-5' defaultValue='6'/>
-        <br />
-        <TextField size="small" dir="rtl" onChange={(e) => setemployeesnum(e.target.value)} id="outlined-basic" label="מספר עובדים במוסד" variant="outlined" className='textField ml-5' defaultValue='4' />
+        <TextField size="small" dir="rtl" onChange={(e) => setemployeesnum(e.target.value)} id="outlined-basic" label="מספר עובדים במוסד" variant="outlined" className='textField ml-5' defaultValue='20' />
         <br />
         <TextField size="small" dir="rtl" onChange={(e) => setchangeshifts(e.target.value)} id="outlined-basic" label="יום בחודש לשינוי משמרות" variant="outlined" className='textField ml-5' defaultValue='5' />
         <br />

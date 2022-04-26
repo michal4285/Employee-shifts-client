@@ -40,7 +40,7 @@ function AlignItemsList(props) {
     fetch(`${API.LOGIN_URL}employee/GetAll`, {
       method: 'GET',
     }).then(res => res.json()).then(data => {
-         debugger;
+       
          if (data.Data != null) 
           setlists(data.Data)
          else setalert(true)

@@ -30,7 +30,7 @@ function mapStateToProps(state) {
 
 function Details(props) {
     const { employee } = props
-    debugger;
+     
     const classes = useStyles()
     const [firstName, setFirstName] = useState(employee.firstname)
     const [lastName, setLastName] = useState(employee.lastName)
@@ -74,7 +74,7 @@ function Details(props) {
             .then(response => response.json())
             .then(result => {
                 console.log(result)
-                debugger;
+                
                 if (result.Data == null)
                     setalert(true)
                 else props.dispatch(setemployee(result.Data))  
@@ -87,7 +87,7 @@ function Details(props) {
         setnewpasswordMessage('')
         setnewpasswordMessage('')
         let flage = true
-        debugger
+        
         if (newPassword != confirmPassword) {
             setnewpasswordMessage("אימות נכשל")
             flage=false
@@ -97,7 +97,7 @@ function Details(props) {
             flage = false
         }
         if (originalPassword === "in correct" ||originalPassword !==employee.password) {
-              debugger
+               
             setoriginalPasswordMessage("אימות נכשל")
             flage=false
         }
@@ -136,7 +136,7 @@ function Details(props) {
                     <p style={{ color: "red" }}>{telMessage}</p>
                     <TextField  size="small" id="outlined-basic" defaultValue={employee.email} disabled label="אימייל" variant="outlined" className='textField ml-5' />
                     <p style={{ color: "red", marginLeft: "42%" }}>{emailMessage}</p>
-                    <TextField size="small" onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct");debugger }} id="outlined-basic" label="סיסמא" variant="outlined" className='textField ml-5' type="password" />
+                    <TextField size="small" onChange={(e) => { if (e.target.value === employee.password) setOriginalPassword(e.target.value); else setOriginalPassword("in correct")}} id="outlined-basic" label="סיסמא" variant="outlined" className='textField ml-5' type="password" />
                     <p style={{ color: "red", marginLeft: "42%" }}>{originalPasswordMessage}</p>
                       <TextField size="small" onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic"  label="אימות סיסמא" variant="outlined" className=' ml-5' type="password" />
                  

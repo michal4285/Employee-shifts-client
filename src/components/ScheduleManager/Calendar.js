@@ -47,13 +47,13 @@ function FullCalendarApp(props) {
 
   useEffect(() => {
     document.getElementsByClassName('fc-today-button fc-button fc-button-primary').value="היום"
-    debugger
+    
     if (employee.id === 1) {
       fetch(`${API.LOGIN_URL}EmployeeMonthShifts/GetShifts`)
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        debugger;
+         
         if (result.Data !== null) { }
         setevents(result.Data)
       }).catch(error => console.log(error));
@@ -63,7 +63,7 @@ function FullCalendarApp(props) {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        debugger;
+        
         if (result.Data !== null) { }
         setevents(result.Data)
       }).catch(error => console.log(error));
@@ -75,7 +75,7 @@ function FullCalendarApp(props) {
       // body: JSON.stringify({})
     })
       .then(res => res.json()).then(data => {
-        debugger;
+        
         if (data.Data != null) {
           let employee = data.Data
           setclickUser(employee)
@@ -432,8 +432,20 @@ function FullCalendarApp(props) {
           day:'יומי',
           list:'רשימה'
         }}
-         
+        titleFormat= {{  month: 'numeric',
+        year: 'numeric',
+        day: 'numeric',
+        // weekday: 'long'
+      } }
+        listDayAltFormat='false'
         locale='heb'
+         
+        eventTimeFormat={{
+          hour: 'numeric',
+          minute: '2-digit',
+          meridiem: 'short'
+        }}
+       
         themeSystem='bootstrap'
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
         theme='bootstrap3'

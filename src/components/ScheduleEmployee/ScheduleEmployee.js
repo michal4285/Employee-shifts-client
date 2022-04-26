@@ -27,6 +27,7 @@ function ScheduleEmployee(props) {
     const [alertError,setalertError]=useState(false)
     const [alertSuccess,setalertSuccess]=useState(false)
     const [alertInfo,setalertInfo]=useState(false)
+    const [alertErrorDay,setalertErrorDay]=useState(false)
 
     const [shifts, setshifts] = useState([,])
     const { employee } = props
@@ -47,24 +48,24 @@ function ScheduleEmployee(props) {
 
 
     useEffect(() => {
-        debugger;
+        
         // fetch(`${API.LOGIN_URL}ShiftInstitution/getInstitutionShifts`,{
         //   method: 'GET',
         // }).then(res => res.json()).then(data => {
-        //      debugger;
+        //      
         //      if (data.Data != null) 
         //         {setshifts(data.Data)
         //         console.log(data.Data)}
         //      else alert("אין  משמרות במערכת")
         //   }
         //   ).catch(err => console.log(err.message))
-        fetch(`${API.LOGIN_URL}Constraint/GetAll`)
+        fetch(`${API.LOGIN_URL}Constraint/getConstraintEmployee?id=${employee.id}`)
         .then(response => response.json())
         .then(result => {
           console.log(result)
-          debugger;
+         
       if (result.Data !== null)
-      {debugger
+      {
       for(let i=0; i<result.Data.length; i++){
       let colorShifts='colorShifts'.concat(Number(result.Data[i].dayInWeek))
       // alert(colorShifts)
@@ -113,7 +114,7 @@ function ScheduleEmployee(props) {
         setcolorShifts7([...listColorShifts7])
       }}
     }}
-    else alert(result.Message)
+    else console.log("error")
   })
   .catch(error => console.log(error));
   
@@ -122,7 +123,7 @@ function ScheduleEmployee(props) {
     const checkFreeDay=(id)=>{
       setalertError(false)
       setalertSuccess(false)
-      setalertInfo(false)
+      setalertErrorDay(false)
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -144,7 +145,7 @@ function ScheduleEmployee(props) {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        debugger;
+        
         if (result.Data !== null)
         {
           // if(colorday[id]==='rgb(182, 77, 112)')
@@ -189,7 +190,7 @@ function ScheduleEmployee(props) {
           listColor[id]='rgb(182, 77, 112)'
           setcolorday([...listColor])
         }
-        else alert(result.Message)
+        else setalertErrorDay(true)
       })
       .catch(error => console.log(error));
     }
@@ -197,6 +198,7 @@ let count=0;
       const checkFreeShift=(id)=>{
         setalertError(false)
         setalertSuccess(false)
+        setalertErrorDay(false)
         
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -219,7 +221,7 @@ let count=0;
           .then(response => response.json())
           .then(result => {
             console.log(result)
-            debugger;
+             
         if (result.Data !== null)
         {
         for(let i=0; i<result.Data.length; i++){
@@ -281,24 +283,31 @@ let count=0;
     return (
     <>
     <div className="shifts">
+      
     <Button
-             style={{width:'50px', height:'50px',  margin:'30px',padding:'50px'}}
+             style={{width:'50px', height:'50px',  margin:'50px',padding:'50px'}}
             variant="contained"
             color="primary"
             onClick={()=>OK()}
           >
             אישור
           </Button>
+         
           <div>
+          <p style={{float:"left" , fontSize:"70%",  position: "absolute",top: 210,right: 1040,padding: 0,margin:0,color:"rgb(18, 26, 133)"}}>.ניתן לבחור יום חופש אחד בשבוע *</p>
+          {/* <br/> */}
+          <p style={{float:"left" , fontSize:"70%",  position: "absolute",top: 240,right: 1040,padding: 0,margin:0,color:"rgb(18, 26, 133)"}}>.ניתן לבחור עד שתי משמרות חופשיות ביום *</p>
       <Stack sx={{ width: '100%' }} spacing={2}>
       {alertError==true&&<Stack sx={{ width: '100%',margin: '5px' }} spacing={2}>
       <Alert severity="error" dir="rtl">לא ניתן לבחור משמרת ביום חופש</Alert></Stack>}
+      {alertErrorDay==true&&<Stack sx={{ width: '100%',margin: '5px' }} spacing={2}>
+      <Alert severity="error" dir="rtl">אין אפשרות לבחור יום חופש ביום זה</Alert></Stack>}
       {alertInfo==true&&<Stack sx={{ width: '100%',margin: '5px' }} spacing={2}>
       <Alert severity="info" dir="rtl">ניתן לבחור עד 2 משמרות חופשיות ליום</Alert></Stack>}
       {alertSuccess==true&&<Stack sx={{ width: '100%',margin: '5px'}} spacing={2}>
       <Alert severity="success" dir="rtl">המשמרות נשמרו בהצלחה</Alert></Stack>}
     </Stack> 
-      <table>
+      <table style={{margin:"0px"}}>
         <tr>
           {/* <th>{shifts[0]}</th>
           <th>{shifts[1]}</th>
